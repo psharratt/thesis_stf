@@ -1,0 +1,10 @@
+{
+    "connection_string": "sqlite:///:memory:",
+    "database": "augur",
+    "host": "data.chaoss.io",
+    "password": "TTxpk98T6?bK",
+    "port": 5432,
+    "schema": "augur_data",
+    "user": "pauluk",
+    "user_type": "read_only"
+}

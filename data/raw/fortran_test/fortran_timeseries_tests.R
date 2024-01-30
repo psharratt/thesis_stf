@@ -1,12 +1,13 @@
-fortran <- read_excel("~/Documents/09 - Data/fortran_test/fortran_fpm_pushes_commits.xlsx")
-
-
-
-#### option ####
-
 # Load the necessary libraries
 library(plotly)
 library(tidyr)
+library(readxl)
+library(ggplot2)
+
+
+fortran <- read_excel("~/Documents/08 - Hertie/thesis_stf/data/raw/fortran_test/fortran_fpm_pushes_commits.xlsx")
+
+#### option ####
 
 # Contract start and end dates (in "YYYY-MM-DD" format)
 contract_start <- as.Date("2023-04-01")  # April 1, 2023
@@ -113,16 +114,13 @@ fortran_plotly_ts
 
 
 
-#### BEST optopm ####
+#### BEST option ####
 
-
-library(plotly)
-
-# Create a bar plot for 'pushes' and 'commits' over 'event_month'
+# Your existing code to create the plot
 fig <- plot_ly(fortran, x = ~event_month, y = ~pushes, name = "Pushes", type = "bar") %>%
   add_trace(x = ~event_month, y = ~commits, name = "Commits", type = "bar")
 
-# Add shapes to the layout to highlight contract start and end dates
+# Add shapes, annotations, and relabel axes
 fig <- layout(fig, title = 'Fortran FPM Pushes and Commits Over Time',
               shapes = list(
                 list(type = "rect",
@@ -132,17 +130,23 @@ fig <- layout(fig, title = 'Fortran FPM Pushes and Commits Over Time',
               ),
               annotations = list(
                 list(
-                  x = as.Date("2023-05-01"),  # X-coordinate for the annotation
-                  y = 0.98,                   # Y-coordinate for the annotation (above the top of the chart)
-                  text = "STF contract",      # Text for the annotation
-                  showarrow = FALSE,          # Hide the arrow
-                  font = list(size = 14),     # Adjust the font size
-                  xref = "x",                 # Reference frame for x-coordinate
-                  yref = "paper"              # Reference frame for y-coordinate
+                  x = as.Date("2023-05-01"),
+                  y = 0.98,
+                  text = "STF contract",
+                  showarrow = FALSE,
+                  font = list(size = 14),
+                  xref = "x",
+                  yref = "paper"
                 )
-              ))
+              ),
+              xaxis = list(title = "Event Month"),  
+              yaxis = list(title = "Commits & Pushes")   
+)
+
 
 fig
+
+
 
 
 

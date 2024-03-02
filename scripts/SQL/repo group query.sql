@@ -1,2 +1,4 @@
-select * from repo where repo_id in
-	(select repo_id from explorer_user_repos where login_name='psh1');
+SELECT * FROM augur_data.repo WHERE repo_id IN
+	(SELECT repo_id FROM augur_data.explorer_user_repos WHERE login_name='psh1');
+	
+

@@ -9,5 +9,6 @@ SELECT
 FROM
     explorer_contributor_actions ca
 WHERE
-    ca.repo_id IN (1, 2, 3)
+    ca.repo_id = 150824 -- testing with 'sequoia-pgp fast-forward'
     AND TIMEZONE('utc', ca.created_at) < NOW()
+

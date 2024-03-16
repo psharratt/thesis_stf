@@ -4,4 +4,4 @@ WHERE repo_id IN (SELECT repo_id FROM augur_data.explorer_user_repos WHERE login
 GROUP BY repo_id, month
 ORDER BY repo_id, month;
 
-DRAFT - THIS DOESN'T WORK YET
+-- DRAFT - THIS DOESN'T WORK YET

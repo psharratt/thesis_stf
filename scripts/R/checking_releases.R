@@ -7,12 +7,15 @@ library(tidyverse)
 library(lubridate)
 
 # Data import
-releases_raw <- read.csv(paste0(base_path, "data/raw/releases-all.csv")) %>%
+releases_raw <- read.csv(paste0(base_path, "data/raw/augur/releases-all.csv")) %>%
   mutate(
     # Convert date formats and extract components
     release_created_at = ymd_hms(release_created_at),
     date = as.Date(release_created_at),
   )
+
+
+
 
 # Assuming releases_grouped and repo_group_data are already defined and available
 # Merge dataframes on 'repo_id'

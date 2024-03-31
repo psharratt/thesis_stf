@@ -16,6 +16,7 @@ FROM
 
 
 -- Below is code for seeing all of the releases for the groups that I've created on Augur
+-- not sure though if I'm missing stuff, for example the sequioa pgp 
 
 SELECT 
     repo.repo_id, 

@@ -16,6 +16,7 @@ releases_raw <- read.csv(paste0(base_path, "data/raw/augur/releases-all.csv")) %
 
 
 
+# ChatGPT:
 
 # Assuming releases_grouped and repo_group_data are already defined and available
 # Merge dataframes on 'repo_id'

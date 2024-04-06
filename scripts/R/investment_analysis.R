@@ -6,8 +6,20 @@ setwd(base_path)
 library(tidyverse)
 library(lubridate)
 library(readxl)
+library(readr)
 
-# Data import
-treatment_group <- read_excel(paste0(base_path, "data/raw/investment/investment dataset_dataset_v3.xlsx"))
+# Import treatment group data
+treatment_group <- read_excel(paste0(base_path, "data/raw/investment/target_group.xlsx"))
 
-# need to get descriptive stats on the different orgs, i.e. number of repos, number of contributors, average commits etc all before the treatment happened
+# Import augur repo groups all data
+repo_groups_all <- read_csv("data/raw/augur/repo_groups_all.csv")
+
+# Load the repo_group.csv file
+repo_group <- read_csv("data/raw/augur/repo_group.csv")
+
+
+# View the structure and first few rows of the dataframe
+str(repo_group)
+head(repo_group)
+
+

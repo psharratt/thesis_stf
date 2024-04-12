@@ -1,0 +1,16 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Mar 12 12:50:16 2024
+
+@author: paulsharratt
+"""
+
+psycopg2-binary==2.9.6
+SQLAlchemy==1.3.24
+pandas==1.5.1
+seaborn==0.12.2
+
+conda install psycopg2-binary==2.9.6
+
+conda install SQLAlchemy==1.3.24

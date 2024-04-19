@@ -48,6 +48,8 @@ def number_of_open_issues_per_month(org_name, start_date, end_date, engine):
     return open_issues_df
 
 
+
+
 def average_issue_closure_time_per_month(org_name, start_date, end_date, engine):
     """Calculate the average time taken to close issues per month for a GitHub organization within a specified date range.
 
@@ -87,9 +89,6 @@ def average_issue_closure_time_per_month(org_name, start_date, end_date, engine)
     """
     import pandas as pd
     return pd.read_sql_query(query, con=engine)
-
-
-
 
 def plot_issue_closure_data(org_name, start_date, end_date, engine, save_directory):
     """Plot the average issue closure time per month for a GitHub organization within specified date range.

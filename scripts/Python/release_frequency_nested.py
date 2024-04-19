@@ -80,6 +80,12 @@ print(fortran_org_release_frequency)
 
 # TESTING ORG RELEASE FREQUENCY OVER TIME
 
+org_name  = 'apache'
+repo_name = 'fpm'
+repo_id =  '191494' # fortran-lang	fpm
+start_date = '2019-01-01'
+end_date =  '2024-04-01'
+
 fortran_org_release_frequency_over_time = get_org_release_frequency_over_time(org_name, start_date, end_date, engine)
 
 # Output the results
@@ -88,7 +94,7 @@ print(fortran_org_release_frequency_over_time)
 import matplotlib.pyplot as plt
 
 # Fetch release frequency data over time
-release_freq_df = get_org_release_frequency_over_time("apache", "2019-01-01", "2023-01-01", engine)
+release_freq_df = get_org_release_frequency_over_time("fortran-lang", "2019-01-01", "2023-01-01", engine)
 
 # Plotting
 plt.figure(figsize=(10, 5))

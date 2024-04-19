@@ -23,7 +23,6 @@ from scripts.functions.issue_closure_time_functions import plot_issue_closure_da
 
 engine = augur_db_connect("scripts/config.json")
 
-
 org_name = 'curl'
 start_date = "2019-01-01"
 end_date = "2024-04-01"

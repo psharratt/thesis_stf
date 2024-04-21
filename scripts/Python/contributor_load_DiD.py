@@ -18,10 +18,12 @@ os.chdir(target_directory)
 from scripts.Python.augur_connect import augur_db_connect
 from scripts.functions.contributor_load_functions import get_org_contributor_load_over_time
 
+engine = augur_db_connect("scripts/config.json")
+
 def collect_contributor_load_data(org_data, start_date, end_date, engine):
     all_org_contributor_load = pd.DataFrame()
     for idx, row in org_data.iterrows():
-        org_name = row['org']  # Confirm the column name 'org' matches your DataFrame
+        org_name = row['org_name']  # Confirm the column name 'org' matches your DataFrame
         print(f"Processing contributor load data for organization: {org_name}")
         
         # Fetch data

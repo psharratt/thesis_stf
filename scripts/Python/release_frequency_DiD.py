@@ -21,7 +21,7 @@ from scripts.functions.release_frequency_functions import get_org_release_freque
 def collect_release_frequency_data(org_data, start_date, end_date, engine):
     all_org_release_frequency = pd.DataFrame()
     for idx, row in org_data.iterrows():
-        org_name = row['org']  # Confirm the column name 'org' matches your DataFrame
+        org_name = row['org_name']  # Confirm the column name 'org' matches your DataFrame
         print(f"Processing release frequency data for organization: {org_name}")
         
         # Fetch data

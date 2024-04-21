@@ -29,6 +29,8 @@ def get_org_contributor_load_over_time(org_name, start_date, end_date, engine):
                                 FROM augur_data.repo
                                 WHERE repo_git LIKE '%%github.com/{org_name}/%%'
                             )
+                            AND cmt_author_date <> ''  -- Exclude empty strings
+                            AND cmt_author_date IS NOT NULL  -- Ensure no NULL values are present
                             AND CAST(cmt_author_date AS DATE) >= '{start_date}'
                             AND CAST(cmt_author_date AS DATE) <= '{end_date}'
                         GROUP BY DATE_TRUNC('month', CAST(cmt_author_date AS TIMESTAMP))
@@ -41,3 +43,4 @@ def get_org_contributor_load_over_time(org_name, start_date, end_date, engine):
     except Exception as e:
         print(f"Failed to fetch contributor load data for {org_name}: {e}")
         return pd.DataFrame()
+

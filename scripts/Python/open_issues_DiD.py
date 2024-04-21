@@ -37,7 +37,7 @@ curl_open_issues_per_month = number_of_open_issues_per_month(org_name, start_dat
 def collect_open_issues_data(org_data, start_date, end_date, engine):
     all_org_issues = pd.DataFrame()
     for idx, row in org_data.iterrows():
-        org_name = row['org']  # Assuming the column name for organization name is 'org'
+        org_name = row['org_name']  # Assuming the column name for organization name is 'org'
         print(f"Processing data for organization: {org_name}")
         
         # Fetch data

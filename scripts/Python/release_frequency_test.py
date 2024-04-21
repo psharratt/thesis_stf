@@ -19,7 +19,7 @@ from scripts.functions.release_frequency_functions import get_release_data, acti
 # If your script is in thesis_stf and you run it from there:
 engine = augur_db_connect("scripts/config.json")
 
-org_name  = 'fortran-lang'
+org_name  = 'curl'
 repo_name = 'fpm'
 repo_id =  '191494' # fortran-lang	fpm
 start_date = '2019-01-01'

@@ -21,7 +21,7 @@ from scripts.functions.issue_closure_time_functions import average_issue_closure
 def collect_issue_closure_data(org_data, start_date, end_date, engine):
     all_org_issue_closure = pd.DataFrame()
     for idx, row in org_data.iterrows():
-        org_name = row['org']  # Confirm the column name 'org' matches your DataFrame
+        org_name = row['org_name']  # Confirm the column name 'org' matches your DataFrame
         print(f"Processing issue closure data for organization: {org_name}")
         
         # Fetch data

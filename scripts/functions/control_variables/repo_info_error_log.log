@@ -1,0 +1,2060 @@
+2024-04-21 14:58:43,683:ERROR:Database query failed for organization curl: (psycopg2.errors.UndefinedColumn) column repo.forks_count does not exist
+LINE 4:                 SUM(repo.forks_count) AS total_number_of_for...
+                            ^
+
+[SQL: 
+            SELECT
+                MIN(repo.created_at) AS first_project_start_date,
+                SUM(repo.forks_count) AS total_number_of_forks,
+                SUM(repo.stargazers_count) AS total_number_of_stars,
+                ARRAY_AGG(DISTINCT repo.language) FILTER (WHERE repo.language IS NOT NULL) AS languages_used,
+                COUNT(repo.repo_id) FILTER (WHERE repo.repo_archived = 'True') AS count_archived_repos,
+                COUNT(repo.repo_id) FILTER (WHERE repo.forked_from IS NOT NULL) AS count_forked_repos
+            FROM
+                repo
+            JOIN
+                repo_groups ON repo.repo_group_id = repo_groups.repo_group_id
+            WHERE
+                LOWER(repo_groups.rg_name) = LOWER('curl')
+            GROUP BY repo_groups.rg_name;
+            ]
+(Background on this error at: http://sqlalche.me/e/13/f405)
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1276, in _execute_context
+    self.dialect.do_execute(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 608, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.UndefinedColumn: column repo.forks_count does not exist
+LINE 4:                 SUM(repo.forks_count) AS total_number_of_for...
+                            ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/paulsharratt/Documents/Hertie/Semester 4/03 - Master's Thesis/thesis_stf/scripts/functions/control_variables/org_repo_info_extended_function.py", line 50, in get_org_repo_info_extended
+    org_repo_info = pd.read_sql_query(query, con=engine)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 397, in read_sql_query
+    return pandas_sql.read_query(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 1560, in read_query
+    result = self.execute(*args)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 1405, in execute
+    return self.connectable.execution_options().execute(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 2235, in execute
+    return connection.execute(statement, *multiparams, **params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1003, in execute
+    return self._execute_text(object_, multiparams, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1172, in _execute_text
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1316, in _execute_context
+    self._handle_dbapi_exception(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1510, in _handle_dbapi_exception
+    util.raise_(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/util/compat.py", line 182, in raise_
+    raise exception
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1276, in _execute_context
+    self.dialect.do_execute(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 608, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedColumn) column repo.forks_count does not exist
+LINE 4:                 SUM(repo.forks_count) AS total_number_of_for...
+                            ^
+
+[SQL: 
+            SELECT
+                MIN(repo.created_at) AS first_project_start_date,
+                SUM(repo.forks_count) AS total_number_of_forks,
+                SUM(repo.stargazers_count) AS total_number_of_stars,
+                ARRAY_AGG(DISTINCT repo.language) FILTER (WHERE repo.language IS NOT NULL) AS languages_used,
+                COUNT(repo.repo_id) FILTER (WHERE repo.repo_archived = 'True') AS count_archived_repos,
+                COUNT(repo.repo_id) FILTER (WHERE repo.forked_from IS NOT NULL) AS count_forked_repos
+            FROM
+                repo
+            JOIN
+                repo_groups ON repo.repo_group_id = repo_groups.repo_group_id
+            WHERE
+                LOWER(repo_groups.rg_name) = LOWER('curl')
+            GROUP BY repo_groups.rg_name;
+            ]
+(Background on this error at: http://sqlalche.me/e/13/f405)
+2024-04-21 15:02:48,704:ERROR:Database query failed for organization curl: (psycopg2.errors.UndefinedColumn) column repo.forks_count does not exist
+LINE 4:                 SUM(repo.forks_count) AS total_number_of_for...
+                            ^
+
+[SQL: 
+            SELECT
+                MIN(repo.created_at) AS first_project_start_date,
+                SUM(repo.forks_count) AS total_number_of_forks,
+                SUM(repo.stargazers_count) AS total_number_of_stars,
+                ARRAY_AGG(DISTINCT repo.language) FILTER (WHERE repo.language IS NOT NULL) AS languages_used,
+                COUNT(repo.repo_id) FILTER (WHERE repo.repo_archived = 'True') AS count_archived_repos,
+                COUNT(repo.repo_id) FILTER (WHERE repo.forked_from IS NOT NULL) AS count_forked_repos
+            FROM
+                augur_data.repo
+            JOIN
+                augur_data.repo_groups ON repo.repo_group_id = repo_groups.repo_group_id
+            WHERE
+                LOWER(repo_groups.rg_name) = LOWER('curl')
+            GROUP BY repo_groups.rg_name;
+            ]
+(Background on this error at: http://sqlalche.me/e/13/f405)
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1276, in _execute_context
+    self.dialect.do_execute(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 608, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.UndefinedColumn: column repo.forks_count does not exist
+LINE 4:                 SUM(repo.forks_count) AS total_number_of_for...
+                            ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/paulsharratt/Documents/Hertie/Semester 4/03 - Master's Thesis/thesis_stf/scripts/functions/control_variables/org_repo_info_extended_function.py", line 50, in get_org_repo_info_extended
+    org_repo_info = pd.read_sql_query(query, con=engine)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 397, in read_sql_query
+    return pandas_sql.read_query(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 1560, in read_query
+    result = self.execute(*args)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 1405, in execute
+    return self.connectable.execution_options().execute(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 2235, in execute
+    return connection.execute(statement, *multiparams, **params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1003, in execute
+    return self._execute_text(object_, multiparams, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1172, in _execute_text
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1316, in _execute_context
+    self._handle_dbapi_exception(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1510, in _handle_dbapi_exception
+    util.raise_(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/util/compat.py", line 182, in raise_
+    raise exception
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1276, in _execute_context
+    self.dialect.do_execute(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 608, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedColumn) column repo.forks_count does not exist
+LINE 4:                 SUM(repo.forks_count) AS total_number_of_for...
+                            ^
+
+[SQL: 
+            SELECT
+                MIN(repo.created_at) AS first_project_start_date,
+                SUM(repo.forks_count) AS total_number_of_forks,
+                SUM(repo.stargazers_count) AS total_number_of_stars,
+                ARRAY_AGG(DISTINCT repo.language) FILTER (WHERE repo.language IS NOT NULL) AS languages_used,
+                COUNT(repo.repo_id) FILTER (WHERE repo.repo_archived = 'True') AS count_archived_repos,
+                COUNT(repo.repo_id) FILTER (WHERE repo.forked_from IS NOT NULL) AS count_forked_repos
+            FROM
+                augur_data.repo
+            JOIN
+                augur_data.repo_groups ON repo.repo_group_id = repo_groups.repo_group_id
+            WHERE
+                LOWER(repo_groups.rg_name) = LOWER('curl')
+            GROUP BY repo_groups.rg_name;
+            ]
+(Background on this error at: http://sqlalche.me/e/13/f405)
+2024-04-21 15:16:22,727:ERROR:Failed to fetch repository count data using org name curl: (psycopg2.errors.UndefinedFunction) function date_trunc(unknown, character varying) does not exist
+LINE 4:                 DATE_TRUNC('month', repo.created_at) AS crea...
+                        ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+
+[SQL: 
+        WITH RepoCreation AS (
+            SELECT
+                DATE_TRUNC('month', repo.created_at) AS creation_month,
+                COUNT(repo.repo_id) AS repo_count
+            FROM
+                augur_data.repo
+            WHERE
+                repo.repo_git LIKE '%%github.com/curl/%%'
+                AND repo.created_at <= '2024-05-01'
+            GROUP BY
+                DATE_TRUNC('month', repo.created_at)
+        ),
+        MonthlyCount AS (
+            SELECT
+                series.month,
+                COALESCE(SUM(rc.repo_count) OVER (ORDER BY series.month), 0) AS cumulative_repos
+            FROM
+                (SELECT generate_series(DATE_TRUNC('month', '2016-01-01'::date), 
+                                        DATE_TRUNC('month', '2024-05-01'::date), 
+                                        '1 month'::interval) AS month) series
+            LEFT JOIN RepoCreation rc
+            ON series.month >= rc.creation_month
+        )
+        SELECT
+            month,
+            cumulative_repos
+        FROM
+            MonthlyCount
+        ORDER BY
+            month;
+    ]
+(Background on this error at: http://sqlalche.me/e/13/f405)
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1276, in _execute_context
+    self.dialect.do_execute(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 608, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.UndefinedFunction: function date_trunc(unknown, character varying) does not exist
+LINE 4:                 DATE_TRUNC('month', repo.created_at) AS crea...
+                        ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/paulsharratt/Documents/Hertie/Semester 4/03 - Master's Thesis/thesis_stf/scripts/functions/control_variables/no_of_repos_over_time_function.py", line 73, in number_of_repos_per_month
+    repo_count_df = pd.read_sql_query(query, con=engine)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 397, in read_sql_query
+    return pandas_sql.read_query(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 1560, in read_query
+    result = self.execute(*args)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 1405, in execute
+    return self.connectable.execution_options().execute(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 2235, in execute
+    return connection.execute(statement, *multiparams, **params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1003, in execute
+    return self._execute_text(object_, multiparams, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1172, in _execute_text
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1316, in _execute_context
+    self._handle_dbapi_exception(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1510, in _handle_dbapi_exception
+    util.raise_(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/util/compat.py", line 182, in raise_
+    raise exception
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1276, in _execute_context
+    self.dialect.do_execute(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 608, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedFunction) function date_trunc(unknown, character varying) does not exist
+LINE 4:                 DATE_TRUNC('month', repo.created_at) AS crea...
+                        ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+
+[SQL: 
+        WITH RepoCreation AS (
+            SELECT
+                DATE_TRUNC('month', repo.created_at) AS creation_month,
+                COUNT(repo.repo_id) AS repo_count
+            FROM
+                augur_data.repo
+            WHERE
+                repo.repo_git LIKE '%%github.com/curl/%%'
+                AND repo.created_at <= '2024-05-01'
+            GROUP BY
+                DATE_TRUNC('month', repo.created_at)
+        ),
+        MonthlyCount AS (
+            SELECT
+                series.month,
+                COALESCE(SUM(rc.repo_count) OVER (ORDER BY series.month), 0) AS cumulative_repos
+            FROM
+                (SELECT generate_series(DATE_TRUNC('month', '2016-01-01'::date), 
+                                        DATE_TRUNC('month', '2024-05-01'::date), 
+                                        '1 month'::interval) AS month) series
+            LEFT JOIN RepoCreation rc
+            ON series.month >= rc.creation_month
+        )
+        SELECT
+            month,
+            cumulative_repos
+        FROM
+            MonthlyCount
+        ORDER BY
+            month;
+    ]
+(Background on this error at: http://sqlalche.me/e/13/f405)
+2024-04-21 15:16:33,151:ERROR:Failed to fetch repository count data using org name curl: (psycopg2.errors.UndefinedFunction) function date_trunc(unknown, character varying) does not exist
+LINE 4:                 DATE_TRUNC('month', repo.created_at) AS crea...
+                        ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+
+[SQL: 
+        WITH RepoCreation AS (
+            SELECT
+                DATE_TRUNC('month', repo.created_at) AS creation_month,
+                COUNT(repo.repo_id) AS repo_count
+            FROM
+                augur_data.repo
+            WHERE
+                repo.repo_git LIKE '%%github.com/curl/%%'
+                AND repo.created_at <= '2024-05-01'
+            GROUP BY
+                DATE_TRUNC('month', repo.created_at)
+        ),
+        MonthlyCount AS (
+            SELECT
+                series.month,
+                COALESCE(SUM(rc.repo_count) OVER (ORDER BY series.month), 0) AS cumulative_repos
+            FROM
+                (SELECT generate_series(DATE_TRUNC('month', '2016-01-01'::date), 
+                                        DATE_TRUNC('month', '2024-05-01'::date), 
+                                        '1 month'::interval) AS month) series
+            LEFT JOIN RepoCreation rc
+            ON series.month >= rc.creation_month
+        )
+        SELECT
+            month,
+            cumulative_repos
+        FROM
+            MonthlyCount
+        ORDER BY
+            month;
+    ]
+(Background on this error at: http://sqlalche.me/e/13/f405)
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1276, in _execute_context
+    self.dialect.do_execute(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 608, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.UndefinedFunction: function date_trunc(unknown, character varying) does not exist
+LINE 4:                 DATE_TRUNC('month', repo.created_at) AS crea...
+                        ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/paulsharratt/Documents/Hertie/Semester 4/03 - Master's Thesis/thesis_stf/scripts/functions/control_variables/no_of_repos_over_time_function.py", line 73, in number_of_repos_per_month
+    repo_count_df = pd.read_sql_query(query, con=engine)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 397, in read_sql_query
+    return pandas_sql.read_query(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 1560, in read_query
+    result = self.execute(*args)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 1405, in execute
+    return self.connectable.execution_options().execute(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 2235, in execute
+    return connection.execute(statement, *multiparams, **params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1003, in execute
+    return self._execute_text(object_, multiparams, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1172, in _execute_text
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1316, in _execute_context
+    self._handle_dbapi_exception(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1510, in _handle_dbapi_exception
+    util.raise_(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/util/compat.py", line 182, in raise_
+    raise exception
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1276, in _execute_context
+    self.dialect.do_execute(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 608, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedFunction) function date_trunc(unknown, character varying) does not exist
+LINE 4:                 DATE_TRUNC('month', repo.created_at) AS crea...
+                        ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+
+[SQL: 
+        WITH RepoCreation AS (
+            SELECT
+                DATE_TRUNC('month', repo.created_at) AS creation_month,
+                COUNT(repo.repo_id) AS repo_count
+            FROM
+                augur_data.repo
+            WHERE
+                repo.repo_git LIKE '%%github.com/curl/%%'
+                AND repo.created_at <= '2024-05-01'
+            GROUP BY
+                DATE_TRUNC('month', repo.created_at)
+        ),
+        MonthlyCount AS (
+            SELECT
+                series.month,
+                COALESCE(SUM(rc.repo_count) OVER (ORDER BY series.month), 0) AS cumulative_repos
+            FROM
+                (SELECT generate_series(DATE_TRUNC('month', '2016-01-01'::date), 
+                                        DATE_TRUNC('month', '2024-05-01'::date), 
+                                        '1 month'::interval) AS month) series
+            LEFT JOIN RepoCreation rc
+            ON series.month >= rc.creation_month
+        )
+        SELECT
+            month,
+            cumulative_repos
+        FROM
+            MonthlyCount
+        ORDER BY
+            month;
+    ]
+(Background on this error at: http://sqlalche.me/e/13/f405)
+2024-04-21 15:16:46,825:ERROR:Failed to fetch repository count data using org name curl: (psycopg2.errors.UndefinedFunction) function date_trunc(unknown, character varying) does not exist
+LINE 4:                 DATE_TRUNC('month', repo.created_at) AS crea...
+                        ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+
+[SQL: 
+        WITH RepoCreation AS (
+            SELECT
+                DATE_TRUNC('month', repo.created_at) AS creation_month,
+                COUNT(repo.repo_id) AS repo_count
+            FROM
+                augur_data.repo
+            WHERE
+                repo.repo_git LIKE '%%github.com/curl/%%'
+                AND repo.created_at <= '2024-05-01'
+            GROUP BY
+                DATE_TRUNC('month', repo.created_at)
+        ),
+        MonthlyCount AS (
+            SELECT
+                series.month,
+                COALESCE(SUM(rc.repo_count) OVER (ORDER BY series.month), 0) AS cumulative_repos
+            FROM
+                (SELECT generate_series(DATE_TRUNC('month', '2016-01-01'::date), 
+                                        DATE_TRUNC('month', '2024-05-01'::date), 
+                                        '1 month'::interval) AS month) series
+            LEFT JOIN RepoCreation rc
+            ON series.month >= rc.creation_month
+        )
+        SELECT
+            month,
+            cumulative_repos
+        FROM
+            MonthlyCount
+        ORDER BY
+            month;
+    ]
+(Background on this error at: http://sqlalche.me/e/13/f405)
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1276, in _execute_context
+    self.dialect.do_execute(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 608, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.UndefinedFunction: function date_trunc(unknown, character varying) does not exist
+LINE 4:                 DATE_TRUNC('month', repo.created_at) AS crea...
+                        ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/paulsharratt/Documents/Hertie/Semester 4/03 - Master's Thesis/thesis_stf/scripts/functions/control_variables/no_of_repos_over_time_function.py", line 73, in number_of_repos_per_month
+    repo_count_df = pd.read_sql_query(query, con=engine)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 397, in read_sql_query
+    return pandas_sql.read_query(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 1560, in read_query
+    result = self.execute(*args)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 1405, in execute
+    return self.connectable.execution_options().execute(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 2235, in execute
+    return connection.execute(statement, *multiparams, **params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1003, in execute
+    return self._execute_text(object_, multiparams, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1172, in _execute_text
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1316, in _execute_context
+    self._handle_dbapi_exception(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1510, in _handle_dbapi_exception
+    util.raise_(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/util/compat.py", line 182, in raise_
+    raise exception
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1276, in _execute_context
+    self.dialect.do_execute(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 608, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedFunction) function date_trunc(unknown, character varying) does not exist
+LINE 4:                 DATE_TRUNC('month', repo.created_at) AS crea...
+                        ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+
+[SQL: 
+        WITH RepoCreation AS (
+            SELECT
+                DATE_TRUNC('month', repo.created_at) AS creation_month,
+                COUNT(repo.repo_id) AS repo_count
+            FROM
+                augur_data.repo
+            WHERE
+                repo.repo_git LIKE '%%github.com/curl/%%'
+                AND repo.created_at <= '2024-05-01'
+            GROUP BY
+                DATE_TRUNC('month', repo.created_at)
+        ),
+        MonthlyCount AS (
+            SELECT
+                series.month,
+                COALESCE(SUM(rc.repo_count) OVER (ORDER BY series.month), 0) AS cumulative_repos
+            FROM
+                (SELECT generate_series(DATE_TRUNC('month', '2016-01-01'::date), 
+                                        DATE_TRUNC('month', '2024-05-01'::date), 
+                                        '1 month'::interval) AS month) series
+            LEFT JOIN RepoCreation rc
+            ON series.month >= rc.creation_month
+        )
+        SELECT
+            month,
+            cumulative_repos
+        FROM
+            MonthlyCount
+        ORDER BY
+            month;
+    ]
+(Background on this error at: http://sqlalche.me/e/13/f405)
+2024-04-21 15:17:14,505:ERROR:Failed to fetch repository count data using org name curl: (psycopg2.errors.UndefinedFunction) function date_trunc(unknown, character varying) does not exist
+LINE 4:                 DATE_TRUNC('month', repo.created_at) AS crea...
+                        ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+
+[SQL: 
+        WITH RepoCreation AS (
+            SELECT
+                DATE_TRUNC('month', repo.created_at) AS creation_month,
+                COUNT(repo.repo_id) AS repo_count
+            FROM
+                augur_data.repo
+            WHERE
+                repo.repo_git LIKE '%%github.com/curl/%%'
+                AND repo.created_at <= '2024-05-01'
+            GROUP BY
+                DATE_TRUNC('month', repo.created_at)
+        ),
+        MonthlyCount AS (
+            SELECT
+                series.month,
+                COALESCE(SUM(rc.repo_count) OVER (ORDER BY series.month), 0) AS cumulative_repos
+            FROM
+                (SELECT generate_series(DATE_TRUNC('month', '2016-01-01'::date), 
+                                        DATE_TRUNC('month', '2024-05-01'::date), 
+                                        '1 month'::interval) AS month) series
+            LEFT JOIN RepoCreation rc
+            ON series.month >= rc.creation_month
+        )
+        SELECT
+            month,
+            cumulative_repos
+        FROM
+            MonthlyCount
+        ORDER BY
+            month;
+    ]
+(Background on this error at: http://sqlalche.me/e/13/f405)
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1276, in _execute_context
+    self.dialect.do_execute(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 608, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.UndefinedFunction: function date_trunc(unknown, character varying) does not exist
+LINE 4:                 DATE_TRUNC('month', repo.created_at) AS crea...
+                        ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/paulsharratt/Documents/Hertie/Semester 4/03 - Master's Thesis/thesis_stf/scripts/functions/control_variables/no_of_repos_over_time_function.py", line 73, in number_of_repos_per_month
+    repo_count_df = pd.read_sql_query(query, con=engine)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 397, in read_sql_query
+    return pandas_sql.read_query(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 1560, in read_query
+    result = self.execute(*args)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 1405, in execute
+    return self.connectable.execution_options().execute(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 2235, in execute
+    return connection.execute(statement, *multiparams, **params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1003, in execute
+    return self._execute_text(object_, multiparams, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1172, in _execute_text
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1316, in _execute_context
+    self._handle_dbapi_exception(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1510, in _handle_dbapi_exception
+    util.raise_(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/util/compat.py", line 182, in raise_
+    raise exception
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1276, in _execute_context
+    self.dialect.do_execute(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 608, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedFunction) function date_trunc(unknown, character varying) does not exist
+LINE 4:                 DATE_TRUNC('month', repo.created_at) AS crea...
+                        ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+
+[SQL: 
+        WITH RepoCreation AS (
+            SELECT
+                DATE_TRUNC('month', repo.created_at) AS creation_month,
+                COUNT(repo.repo_id) AS repo_count
+            FROM
+                augur_data.repo
+            WHERE
+                repo.repo_git LIKE '%%github.com/curl/%%'
+                AND repo.created_at <= '2024-05-01'
+            GROUP BY
+                DATE_TRUNC('month', repo.created_at)
+        ),
+        MonthlyCount AS (
+            SELECT
+                series.month,
+                COALESCE(SUM(rc.repo_count) OVER (ORDER BY series.month), 0) AS cumulative_repos
+            FROM
+                (SELECT generate_series(DATE_TRUNC('month', '2016-01-01'::date), 
+                                        DATE_TRUNC('month', '2024-05-01'::date), 
+                                        '1 month'::interval) AS month) series
+            LEFT JOIN RepoCreation rc
+            ON series.month >= rc.creation_month
+        )
+        SELECT
+            month,
+            cumulative_repos
+        FROM
+            MonthlyCount
+        ORDER BY
+            month;
+    ]
+(Background on this error at: http://sqlalche.me/e/13/f405)
+2024-04-21 15:29:26,270:ERROR:Failed to fetch repository count data using org name curl: (psycopg2.errors.UndefinedFunction) function date_trunc(unknown, character varying) does not exist
+LINE 4:                 DATE_TRUNC('month', repo.created_at) AS crea...
+                        ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+
+[SQL: 
+        WITH RepoCreation AS (
+            SELECT
+                DATE_TRUNC('month', repo.created_at) AS creation_month,
+                COUNT(repo.repo_id) AS repo_count
+            FROM
+                repo
+            WHERE
+                repo.repo_git LIKE '%%github.com/curl/%%'
+                AND repo.created_at <= '2024-05-01'
+            GROUP BY
+                DATE_TRUNC('month', repo.created_at)
+        ),
+        MonthlyCount AS (
+            SELECT
+                series.month,
+                COALESCE(SUM(rc.repo_count) OVER (ORDER BY series.month), 0) AS cumulative_repos
+            FROM
+                (SELECT generate_series(DATE_TRUNC('month', '2016-01-01'::date), 
+                                        DATE_TRUNC('month', '2024-05-01'::date), 
+                                        '1 month'::interval) AS month) series
+            LEFT JOIN RepoCreation rc
+            ON series.month >= rc.creation_month
+        )
+        SELECT
+            month,
+            cumulative_repos
+        FROM
+            MonthlyCount
+        ORDER BY
+            month;
+    ]
+(Background on this error at: http://sqlalche.me/e/13/f405)
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1276, in _execute_context
+    self.dialect.do_execute(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 608, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.UndefinedFunction: function date_trunc(unknown, character varying) does not exist
+LINE 4:                 DATE_TRUNC('month', repo.created_at) AS crea...
+                        ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/paulsharratt/Documents/Hertie/Semester 4/03 - Master's Thesis/thesis_stf/scripts/functions/control_variables/no_of_repos_over_time_function.py", line 74, in number_of_repos_per_month
+    repo_count_df = pd.read_sql_query(query, con=engine)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 397, in read_sql_query
+    return pandas_sql.read_query(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 1560, in read_query
+    result = self.execute(*args)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 1405, in execute
+    return self.connectable.execution_options().execute(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 2235, in execute
+    return connection.execute(statement, *multiparams, **params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1003, in execute
+    return self._execute_text(object_, multiparams, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1172, in _execute_text
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1316, in _execute_context
+    self._handle_dbapi_exception(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1510, in _handle_dbapi_exception
+    util.raise_(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/util/compat.py", line 182, in raise_
+    raise exception
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1276, in _execute_context
+    self.dialect.do_execute(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 608, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedFunction) function date_trunc(unknown, character varying) does not exist
+LINE 4:                 DATE_TRUNC('month', repo.created_at) AS crea...
+                        ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+
+[SQL: 
+        WITH RepoCreation AS (
+            SELECT
+                DATE_TRUNC('month', repo.created_at) AS creation_month,
+                COUNT(repo.repo_id) AS repo_count
+            FROM
+                repo
+            WHERE
+                repo.repo_git LIKE '%%github.com/curl/%%'
+                AND repo.created_at <= '2024-05-01'
+            GROUP BY
+                DATE_TRUNC('month', repo.created_at)
+        ),
+        MonthlyCount AS (
+            SELECT
+                series.month,
+                COALESCE(SUM(rc.repo_count) OVER (ORDER BY series.month), 0) AS cumulative_repos
+            FROM
+                (SELECT generate_series(DATE_TRUNC('month', '2016-01-01'::date), 
+                                        DATE_TRUNC('month', '2024-05-01'::date), 
+                                        '1 month'::interval) AS month) series
+            LEFT JOIN RepoCreation rc
+            ON series.month >= rc.creation_month
+        )
+        SELECT
+            month,
+            cumulative_repos
+        FROM
+            MonthlyCount
+        ORDER BY
+            month;
+    ]
+(Background on this error at: http://sqlalche.me/e/13/f405)
+2024-04-21 15:29:58,602:ERROR:Failed to fetch repository count data using org name curl: (psycopg2.errors.UndefinedFunction) function date_trunc(unknown, character varying) does not exist
+LINE 4:                 DATE_TRUNC('month', repo.created_at) AS crea...
+                        ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+
+[SQL: 
+        WITH RepoCreation AS (
+            SELECT
+                DATE_TRUNC('month', repo.created_at) AS creation_month,
+                COUNT(repo.repo_id) AS repo_count
+            FROM
+                repo
+            WHERE
+                repo.repo_git LIKE '%%github.com/curl/%%'
+                AND repo.created_at <= '2024-05-01'
+            GROUP BY
+                DATE_TRUNC('month', repo.created_at)
+        ),
+        MonthlyCount AS (
+            SELECT
+                series.month,
+                COALESCE(SUM(rc.repo_count) OVER (ORDER BY series.month), 0) AS cumulative_repos
+            FROM
+                (SELECT generate_series(DATE_TRUNC('month', '2016-01-01'::date), 
+                                        DATE_TRUNC('month', '2024-05-01'::date), 
+                                        '1 month'::interval) AS month) series
+            LEFT JOIN RepoCreation rc
+            ON series.month >= rc.creation_month
+        )
+        SELECT
+            month,
+            cumulative_repos
+        FROM
+            MonthlyCount
+        ORDER BY
+            month;
+    ]
+(Background on this error at: http://sqlalche.me/e/13/f405)
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1276, in _execute_context
+    self.dialect.do_execute(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 608, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.UndefinedFunction: function date_trunc(unknown, character varying) does not exist
+LINE 4:                 DATE_TRUNC('month', repo.created_at) AS crea...
+                        ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/paulsharratt/Documents/Hertie/Semester 4/03 - Master's Thesis/thesis_stf/scripts/functions/control_variables/no_of_repos_over_time_function.py", line 74, in number_of_repos_per_month
+    repo_count_df = pd.read_sql_query(query, con=engine)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 397, in read_sql_query
+    return pandas_sql.read_query(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 1560, in read_query
+    result = self.execute(*args)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 1405, in execute
+    return self.connectable.execution_options().execute(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 2235, in execute
+    return connection.execute(statement, *multiparams, **params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1003, in execute
+    return self._execute_text(object_, multiparams, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1172, in _execute_text
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1316, in _execute_context
+    self._handle_dbapi_exception(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1510, in _handle_dbapi_exception
+    util.raise_(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/util/compat.py", line 182, in raise_
+    raise exception
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1276, in _execute_context
+    self.dialect.do_execute(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 608, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedFunction) function date_trunc(unknown, character varying) does not exist
+LINE 4:                 DATE_TRUNC('month', repo.created_at) AS crea...
+                        ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+
+[SQL: 
+        WITH RepoCreation AS (
+            SELECT
+                DATE_TRUNC('month', repo.created_at) AS creation_month,
+                COUNT(repo.repo_id) AS repo_count
+            FROM
+                repo
+            WHERE
+                repo.repo_git LIKE '%%github.com/curl/%%'
+                AND repo.created_at <= '2024-05-01'
+            GROUP BY
+                DATE_TRUNC('month', repo.created_at)
+        ),
+        MonthlyCount AS (
+            SELECT
+                series.month,
+                COALESCE(SUM(rc.repo_count) OVER (ORDER BY series.month), 0) AS cumulative_repos
+            FROM
+                (SELECT generate_series(DATE_TRUNC('month', '2016-01-01'::date), 
+                                        DATE_TRUNC('month', '2024-05-01'::date), 
+                                        '1 month'::interval) AS month) series
+            LEFT JOIN RepoCreation rc
+            ON series.month >= rc.creation_month
+        )
+        SELECT
+            month,
+            cumulative_repos
+        FROM
+            MonthlyCount
+        ORDER BY
+            month;
+    ]
+(Background on this error at: http://sqlalche.me/e/13/f405)
+2024-04-21 15:30:11,532:ERROR:Failed to fetch repository count data using org name fortran-lang: (psycopg2.errors.UndefinedFunction) function date_trunc(unknown, character varying) does not exist
+LINE 4:                 DATE_TRUNC('month', repo.created_at) AS crea...
+                        ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+
+[SQL: 
+        WITH RepoCreation AS (
+            SELECT
+                DATE_TRUNC('month', repo.created_at) AS creation_month,
+                COUNT(repo.repo_id) AS repo_count
+            FROM
+                repo
+            WHERE
+                repo.repo_git LIKE '%%github.com/fortran-lang/%%'
+                AND repo.created_at <= '2024-05-01'
+            GROUP BY
+                DATE_TRUNC('month', repo.created_at)
+        ),
+        MonthlyCount AS (
+            SELECT
+                series.month,
+                COALESCE(SUM(rc.repo_count) OVER (ORDER BY series.month), 0) AS cumulative_repos
+            FROM
+                (SELECT generate_series(DATE_TRUNC('month', '2016-01-01'::date), 
+                                        DATE_TRUNC('month', '2024-05-01'::date), 
+                                        '1 month'::interval) AS month) series
+            LEFT JOIN RepoCreation rc
+            ON series.month >= rc.creation_month
+        )
+        SELECT
+            month,
+            cumulative_repos
+        FROM
+            MonthlyCount
+        ORDER BY
+            month;
+    ]
+(Background on this error at: http://sqlalche.me/e/13/f405)
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1276, in _execute_context
+    self.dialect.do_execute(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 608, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.UndefinedFunction: function date_trunc(unknown, character varying) does not exist
+LINE 4:                 DATE_TRUNC('month', repo.created_at) AS crea...
+                        ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/paulsharratt/Documents/Hertie/Semester 4/03 - Master's Thesis/thesis_stf/scripts/functions/control_variables/no_of_repos_over_time_function.py", line 74, in number_of_repos_per_month
+    repo_count_df = pd.read_sql_query(query, con=engine)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 397, in read_sql_query
+    return pandas_sql.read_query(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 1560, in read_query
+    result = self.execute(*args)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 1405, in execute
+    return self.connectable.execution_options().execute(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 2235, in execute
+    return connection.execute(statement, *multiparams, **params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1003, in execute
+    return self._execute_text(object_, multiparams, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1172, in _execute_text
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1316, in _execute_context
+    self._handle_dbapi_exception(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1510, in _handle_dbapi_exception
+    util.raise_(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/util/compat.py", line 182, in raise_
+    raise exception
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1276, in _execute_context
+    self.dialect.do_execute(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 608, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedFunction) function date_trunc(unknown, character varying) does not exist
+LINE 4:                 DATE_TRUNC('month', repo.created_at) AS crea...
+                        ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+
+[SQL: 
+        WITH RepoCreation AS (
+            SELECT
+                DATE_TRUNC('month', repo.created_at) AS creation_month,
+                COUNT(repo.repo_id) AS repo_count
+            FROM
+                repo
+            WHERE
+                repo.repo_git LIKE '%%github.com/fortran-lang/%%'
+                AND repo.created_at <= '2024-05-01'
+            GROUP BY
+                DATE_TRUNC('month', repo.created_at)
+        ),
+        MonthlyCount AS (
+            SELECT
+                series.month,
+                COALESCE(SUM(rc.repo_count) OVER (ORDER BY series.month), 0) AS cumulative_repos
+            FROM
+                (SELECT generate_series(DATE_TRUNC('month', '2016-01-01'::date), 
+                                        DATE_TRUNC('month', '2024-05-01'::date), 
+                                        '1 month'::interval) AS month) series
+            LEFT JOIN RepoCreation rc
+            ON series.month >= rc.creation_month
+        )
+        SELECT
+            month,
+            cumulative_repos
+        FROM
+            MonthlyCount
+        ORDER BY
+            month;
+    ]
+(Background on this error at: http://sqlalche.me/e/13/f405)
+2024-04-21 15:32:18,864:ERROR:Failed to fetch repository count data using org name apache: (psycopg2.errors.UndefinedFunction) function date_trunc(unknown, character varying) does not exist
+LINE 4:                 DATE_TRUNC('month', repo.created_at) AS crea...
+                        ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+
+[SQL: 
+        WITH RepoCreation AS (
+            SELECT
+                DATE_TRUNC('month', repo.created_at) AS creation_month,
+                COUNT(repo.repo_id) AS repo_count
+            FROM
+                repo
+            WHERE
+                repo.repo_git LIKE '%%github.com/apache/%%'
+                AND repo.created_at <= '2024-05-01'
+            GROUP BY
+                DATE_TRUNC('month', repo.created_at)
+        ),
+        MonthlyCount AS (
+            SELECT
+                series.month,
+                COALESCE(SUM(rc.repo_count) OVER (ORDER BY series.month), 0) AS cumulative_repos
+            FROM
+                (SELECT generate_series(DATE_TRUNC('month', '2016-01-01'::date), 
+                                        DATE_TRUNC('month', '2024-05-01'::date), 
+                                        '1 month'::interval) AS month) series
+            LEFT JOIN RepoCreation rc
+            ON series.month >= rc.creation_month
+        )
+        SELECT
+            month,
+            cumulative_repos
+        FROM
+            MonthlyCount
+        ORDER BY
+            month;
+    ]
+(Background on this error at: http://sqlalche.me/e/13/f405)
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1276, in _execute_context
+    self.dialect.do_execute(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 608, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.UndefinedFunction: function date_trunc(unknown, character varying) does not exist
+LINE 4:                 DATE_TRUNC('month', repo.created_at) AS crea...
+                        ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/paulsharratt/Documents/Hertie/Semester 4/03 - Master's Thesis/thesis_stf/scripts/functions/control_variables/no_of_repos_over_time_function.py", line 74, in number_of_repos_per_month
+    repo_count_df = pd.read_sql_query(query, con=engine)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 397, in read_sql_query
+    return pandas_sql.read_query(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 1560, in read_query
+    result = self.execute(*args)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 1405, in execute
+    return self.connectable.execution_options().execute(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 2235, in execute
+    return connection.execute(statement, *multiparams, **params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1003, in execute
+    return self._execute_text(object_, multiparams, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1172, in _execute_text
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1316, in _execute_context
+    self._handle_dbapi_exception(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1510, in _handle_dbapi_exception
+    util.raise_(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/util/compat.py", line 182, in raise_
+    raise exception
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1276, in _execute_context
+    self.dialect.do_execute(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 608, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedFunction) function date_trunc(unknown, character varying) does not exist
+LINE 4:                 DATE_TRUNC('month', repo.created_at) AS crea...
+                        ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+
+[SQL: 
+        WITH RepoCreation AS (
+            SELECT
+                DATE_TRUNC('month', repo.created_at) AS creation_month,
+                COUNT(repo.repo_id) AS repo_count
+            FROM
+                repo
+            WHERE
+                repo.repo_git LIKE '%%github.com/apache/%%'
+                AND repo.created_at <= '2024-05-01'
+            GROUP BY
+                DATE_TRUNC('month', repo.created_at)
+        ),
+        MonthlyCount AS (
+            SELECT
+                series.month,
+                COALESCE(SUM(rc.repo_count) OVER (ORDER BY series.month), 0) AS cumulative_repos
+            FROM
+                (SELECT generate_series(DATE_TRUNC('month', '2016-01-01'::date), 
+                                        DATE_TRUNC('month', '2024-05-01'::date), 
+                                        '1 month'::interval) AS month) series
+            LEFT JOIN RepoCreation rc
+            ON series.month >= rc.creation_month
+        )
+        SELECT
+            month,
+            cumulative_repos
+        FROM
+            MonthlyCount
+        ORDER BY
+            month;
+    ]
+(Background on this error at: http://sqlalche.me/e/13/f405)
+2024-04-21 15:34:08,291:ERROR:Failed to fetch repository count data using org name apache: (psycopg2.errors.UndefinedFunction) function date_trunc(unknown, character varying) does not exist
+LINE 4:                 DATE_TRUNC('month', repo.created_at) AS crea...
+                        ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+
+[SQL: 
+        WITH RepoCreation AS (
+            SELECT
+                DATE_TRUNC('month', repo.created_at) AS creation_month,
+                COUNT(repo.repo_id) AS repo_count
+            FROM
+                augur_data.repo
+            WHERE
+                repo.repo_git LIKE '%%github.com/apache/%%'
+                AND repo.created_at <= '2024-05-01'
+            GROUP BY
+                DATE_TRUNC('month', repo.created_at)
+        ),
+        MonthlyCount AS (
+            SELECT
+                series.month,
+                COALESCE(SUM(rc.repo_count) OVER (ORDER BY series.month), 0) AS cumulative_repos
+            FROM
+                (SELECT generate_series(DATE_TRUNC('month', '2016-01-01'::date), 
+                                        DATE_TRUNC('month', '2024-05-01'::date), 
+                                        '1 month'::interval) AS month) series
+            LEFT JOIN RepoCreation rc
+            ON series.month >= rc.creation_month
+        )
+        SELECT
+            month,
+            cumulative_repos
+        FROM
+            MonthlyCount
+        ORDER BY
+            month;
+    ]
+(Background on this error at: http://sqlalche.me/e/13/f405)
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1276, in _execute_context
+    self.dialect.do_execute(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 608, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.UndefinedFunction: function date_trunc(unknown, character varying) does not exist
+LINE 4:                 DATE_TRUNC('month', repo.created_at) AS crea...
+                        ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/paulsharratt/Documents/Hertie/Semester 4/03 - Master's Thesis/thesis_stf/scripts/functions/control_variables/no_of_repos_over_time_function.py", line 74, in number_of_repos_per_month
+    repo_count_df = pd.read_sql_query(query, con=engine)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 397, in read_sql_query
+    return pandas_sql.read_query(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 1560, in read_query
+    result = self.execute(*args)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 1405, in execute
+    return self.connectable.execution_options().execute(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 2235, in execute
+    return connection.execute(statement, *multiparams, **params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1003, in execute
+    return self._execute_text(object_, multiparams, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1172, in _execute_text
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1316, in _execute_context
+    self._handle_dbapi_exception(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1510, in _handle_dbapi_exception
+    util.raise_(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/util/compat.py", line 182, in raise_
+    raise exception
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1276, in _execute_context
+    self.dialect.do_execute(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 608, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedFunction) function date_trunc(unknown, character varying) does not exist
+LINE 4:                 DATE_TRUNC('month', repo.created_at) AS crea...
+                        ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+
+[SQL: 
+        WITH RepoCreation AS (
+            SELECT
+                DATE_TRUNC('month', repo.created_at) AS creation_month,
+                COUNT(repo.repo_id) AS repo_count
+            FROM
+                augur_data.repo
+            WHERE
+                repo.repo_git LIKE '%%github.com/apache/%%'
+                AND repo.created_at <= '2024-05-01'
+            GROUP BY
+                DATE_TRUNC('month', repo.created_at)
+        ),
+        MonthlyCount AS (
+            SELECT
+                series.month,
+                COALESCE(SUM(rc.repo_count) OVER (ORDER BY series.month), 0) AS cumulative_repos
+            FROM
+                (SELECT generate_series(DATE_TRUNC('month', '2016-01-01'::date), 
+                                        DATE_TRUNC('month', '2024-05-01'::date), 
+                                        '1 month'::interval) AS month) series
+            LEFT JOIN RepoCreation rc
+            ON series.month >= rc.creation_month
+        )
+        SELECT
+            month,
+            cumulative_repos
+        FROM
+            MonthlyCount
+        ORDER BY
+            month;
+    ]
+(Background on this error at: http://sqlalche.me/e/13/f405)
+2024-04-21 17:01:18,464:ERROR:SQL query failed for organization curl: (psycopg2.errors.UndefinedFunction) function date_trunc(unknown, character varying) does not exist
+LINE 4:                 DATE_TRUNC('month', repo.created_at) AS mont...
+                        ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+
+[SQL: 
+        WITH MonthlyRepos AS (
+            SELECT
+                DATE_TRUNC('month', repo.created_at) AS month,
+                COUNT(repo.repo_id) AS monthly_repo_count
+            FROM
+                augur_data.repo
+            JOIN
+                augur_data.repo_groups ON repo.repo_group_id = repo_groups.repo_group_id
+            WHERE
+                LOWER(repo_groups.rg_name) = LOWER('curl')
+                AND repo.created_at BETWEEN '2016-01-01' AND '2024-05-01'
+            GROUP BY
+                DATE_TRUNC('month', repo.created_at)
+        )
+        SELECT
+            month,
+            SUM(monthly_repo_count) OVER (ORDER BY month) AS cumulative_repos
+        FROM
+            MonthlyRepos
+        ORDER BY
+            month;
+    ]
+(Background on this error at: http://sqlalche.me/e/13/f405)
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1276, in _execute_context
+    self.dialect.do_execute(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 608, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.UndefinedFunction: function date_trunc(unknown, character varying) does not exist
+LINE 4:                 DATE_TRUNC('month', repo.created_at) AS mont...
+                        ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/paulsharratt/Documents/Hertie/Semester 4/03 - Master's Thesis/thesis_stf/scripts/functions/control_variables/no_of_repos_over_time_function.py", line 65, in count_repos_per_month
+    repo_count_df = pd.read_sql_query(query, con=engine)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 397, in read_sql_query
+    return pandas_sql.read_query(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 1560, in read_query
+    result = self.execute(*args)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 1405, in execute
+    return self.connectable.execution_options().execute(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 2235, in execute
+    return connection.execute(statement, *multiparams, **params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1003, in execute
+    return self._execute_text(object_, multiparams, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1172, in _execute_text
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1316, in _execute_context
+    self._handle_dbapi_exception(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1510, in _handle_dbapi_exception
+    util.raise_(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/util/compat.py", line 182, in raise_
+    raise exception
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1276, in _execute_context
+    self.dialect.do_execute(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 608, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedFunction) function date_trunc(unknown, character varying) does not exist
+LINE 4:                 DATE_TRUNC('month', repo.created_at) AS mont...
+                        ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+
+[SQL: 
+        WITH MonthlyRepos AS (
+            SELECT
+                DATE_TRUNC('month', repo.created_at) AS month,
+                COUNT(repo.repo_id) AS monthly_repo_count
+            FROM
+                augur_data.repo
+            JOIN
+                augur_data.repo_groups ON repo.repo_group_id = repo_groups.repo_group_id
+            WHERE
+                LOWER(repo_groups.rg_name) = LOWER('curl')
+                AND repo.created_at BETWEEN '2016-01-01' AND '2024-05-01'
+            GROUP BY
+                DATE_TRUNC('month', repo.created_at)
+        )
+        SELECT
+            month,
+            SUM(monthly_repo_count) OVER (ORDER BY month) AS cumulative_repos
+        FROM
+            MonthlyRepos
+        ORDER BY
+            month;
+    ]
+(Background on this error at: http://sqlalche.me/e/13/f405)
+2024-04-21 17:12:54,763:ERROR:SQL query failed for organization apache: (psycopg2.errors.DatatypeMismatch) COALESCE types text and timestamp without time zone cannot be matched
+LINE 4: ...NC('month', COALESCE(NULLIF(repo.created_at, ''), repo.repo_...
+                                                             ^
+
+[SQL: 
+        WITH MonthlyRepos AS (
+            SELECT
+                DATE_TRUNC('month', COALESCE(NULLIF(repo.created_at, ''), repo.repo_added)) AS month,
+                COUNT(repo.repo_id) AS monthly_repo_count
+            FROM
+                augur_data.repo
+            JOIN
+                augur_data.repo_groups ON repo.repo_group_id = repo_groups.repo_group_id
+            WHERE
+                LOWER(repo_groups.rg_name) = LOWER('apache')
+                AND COALESCE(NULLIF(repo.created_at, ''), repo.repo_added) BETWEEN '2016-01-01' AND '2024-05-01'
+            GROUP BY
+                DATE_TRUNC('month', COALESCE(NULLIF(repo.created_at, ''), repo.repo_added))
+        )
+        SELECT
+            month,
+            SUM(monthly_repo_count) OVER (ORDER BY month) AS cumulative_repos
+        FROM
+            MonthlyRepos
+        ORDER BY
+            month;
+    ]
+(Background on this error at: http://sqlalche.me/e/13/f405)
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1276, in _execute_context
+    self.dialect.do_execute(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 608, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.DatatypeMismatch: COALESCE types text and timestamp without time zone cannot be matched
+LINE 4: ...NC('month', COALESCE(NULLIF(repo.created_at, ''), repo.repo_...
+                                                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/paulsharratt/Documents/Hertie/Semester 4/03 - Master's Thesis/thesis_stf/scripts/functions/control_variables/no_of_repos_over_time_function.py", line 62, in count_repos_per_month
+    repo_count_df = pd.read_sql_query(query, con=engine)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 397, in read_sql_query
+    return pandas_sql.read_query(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 1560, in read_query
+    result = self.execute(*args)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 1405, in execute
+    return self.connectable.execution_options().execute(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 2235, in execute
+    return connection.execute(statement, *multiparams, **params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1003, in execute
+    return self._execute_text(object_, multiparams, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1172, in _execute_text
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1316, in _execute_context
+    self._handle_dbapi_exception(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1510, in _handle_dbapi_exception
+    util.raise_(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/util/compat.py", line 182, in raise_
+    raise exception
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1276, in _execute_context
+    self.dialect.do_execute(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 608, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.DatatypeMismatch) COALESCE types text and timestamp without time zone cannot be matched
+LINE 4: ...NC('month', COALESCE(NULLIF(repo.created_at, ''), repo.repo_...
+                                                             ^
+
+[SQL: 
+        WITH MonthlyRepos AS (
+            SELECT
+                DATE_TRUNC('month', COALESCE(NULLIF(repo.created_at, ''), repo.repo_added)) AS month,
+                COUNT(repo.repo_id) AS monthly_repo_count
+            FROM
+                augur_data.repo
+            JOIN
+                augur_data.repo_groups ON repo.repo_group_id = repo_groups.repo_group_id
+            WHERE
+                LOWER(repo_groups.rg_name) = LOWER('apache')
+                AND COALESCE(NULLIF(repo.created_at, ''), repo.repo_added) BETWEEN '2016-01-01' AND '2024-05-01'
+            GROUP BY
+                DATE_TRUNC('month', COALESCE(NULLIF(repo.created_at, ''), repo.repo_added))
+        )
+        SELECT
+            month,
+            SUM(monthly_repo_count) OVER (ORDER BY month) AS cumulative_repos
+        FROM
+            MonthlyRepos
+        ORDER BY
+            month;
+    ]
+(Background on this error at: http://sqlalche.me/e/13/f405)
+2024-04-21 17:13:47,075:ERROR:SQL query failed for organization curl: (psycopg2.errors.UndefinedFunction) function date_trunc(unknown, text) does not exist
+LINE 17:                 DATE_TRUNC('month', creation_date) AS month,
+                         ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+
+[SQL: 
+        WITH RepoCreation AS (
+            SELECT
+                repo.repo_id,
+                MIN(commits.cmt_author_date) AS creation_date
+            FROM
+                augur_data.commits AS commits
+            JOIN
+                augur_data.repo AS repo ON commits.repo_id = repo.repo_id
+            WHERE
+                repo.repo_git LIKE '%%github.com/curl/%%'
+            GROUP BY
+                repo.repo_id
+        ),
+        MonthlyRepos AS (
+            SELECT
+                DATE_TRUNC('month', creation_date) AS month,
+                COUNT(repo_id) AS monthly_repo_count
+            FROM
+                RepoCreation
+            WHERE
+                creation_date BETWEEN '2016-01-01' AND '2024-05-01'
+            GROUP BY
+                DATE_TRUNC('month', creation_date)
+        ),
+        CumulativeMonthlyRepos AS (
+            SELECT
+                month,
+                SUM(monthly_repo_count) OVER (ORDER BY month) AS cumulative_repos
+            FROM
+                MonthlyRepos
+        )
+        SELECT
+            month,
+            cumulative_repos
+        FROM
+            CumulativeMonthlyRepos
+        ORDER BY
+            month;
+    ]
+(Background on this error at: http://sqlalche.me/e/13/f405)
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1276, in _execute_context
+    self.dialect.do_execute(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 608, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.UndefinedFunction: function date_trunc(unknown, text) does not exist
+LINE 17:                 DATE_TRUNC('month', creation_date) AS month,
+                         ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/paulsharratt/Documents/Hertie/Semester 4/03 - Master's Thesis/thesis_stf/scripts/functions/control_variables/no_of_repos_over_time_function.py", line 80, in count_repos_per_month_using_commits
+    repo_count_df = pd.read_sql_query(query, con=engine)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 397, in read_sql_query
+    return pandas_sql.read_query(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 1560, in read_query
+    result = self.execute(*args)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 1405, in execute
+    return self.connectable.execution_options().execute(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 2235, in execute
+    return connection.execute(statement, *multiparams, **params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1003, in execute
+    return self._execute_text(object_, multiparams, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1172, in _execute_text
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1316, in _execute_context
+    self._handle_dbapi_exception(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1510, in _handle_dbapi_exception
+    util.raise_(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/util/compat.py", line 182, in raise_
+    raise exception
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1276, in _execute_context
+    self.dialect.do_execute(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 608, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedFunction) function date_trunc(unknown, text) does not exist
+LINE 17:                 DATE_TRUNC('month', creation_date) AS month,
+                         ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+
+[SQL: 
+        WITH RepoCreation AS (
+            SELECT
+                repo.repo_id,
+                MIN(commits.cmt_author_date) AS creation_date
+            FROM
+                augur_data.commits AS commits
+            JOIN
+                augur_data.repo AS repo ON commits.repo_id = repo.repo_id
+            WHERE
+                repo.repo_git LIKE '%%github.com/curl/%%'
+            GROUP BY
+                repo.repo_id
+        ),
+        MonthlyRepos AS (
+            SELECT
+                DATE_TRUNC('month', creation_date) AS month,
+                COUNT(repo_id) AS monthly_repo_count
+            FROM
+                RepoCreation
+            WHERE
+                creation_date BETWEEN '2016-01-01' AND '2024-05-01'
+            GROUP BY
+                DATE_TRUNC('month', creation_date)
+        ),
+        CumulativeMonthlyRepos AS (
+            SELECT
+                month,
+                SUM(monthly_repo_count) OVER (ORDER BY month) AS cumulative_repos
+            FROM
+                MonthlyRepos
+        )
+        SELECT
+            month,
+            cumulative_repos
+        FROM
+            CumulativeMonthlyRepos
+        ORDER BY
+            month;
+    ]
+(Background on this error at: http://sqlalche.me/e/13/f405)
+2024-04-21 17:17:31,908:ERROR:SQL query failed for organization apache: (psycopg2.errors.UndefinedColumn) column repo.forks_count does not exist
+LINE 5:                 SUM(repo.forks_count) AS total_forks
+                            ^
+
+[SQL: 
+        WITH ForksByMonth AS (
+            SELECT
+                DATE_TRUNC('month', repo.repo_added) AS month,
+                SUM(repo.forks_count) AS total_forks
+            FROM
+                augur_data.repo
+            JOIN
+                augur_data.repo_groups ON repo.repo_group_id = repo_groups.repo_group_id
+            WHERE
+                LOWER(repo_groups.rg_name) = LOWER('apache')
+                AND repo.repo_added BETWEEN '2016-01-01' AND '2024-05-01'
+            GROUP BY
+                DATE_TRUNC('month', repo.repo_added)
+        ),
+        CumulativeForks AS (
+            SELECT
+                month,
+                SUM(total_forks) OVER (ORDER BY month) AS cumulative_forks
+            FROM
+                ForksByMonth
+        )
+        SELECT
+            month,
+            cumulative_forks
+        FROM
+            CumulativeForks
+        ORDER BY
+            month;
+    ]
+(Background on this error at: http://sqlalche.me/e/13/f405)
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1276, in _execute_context
+    self.dialect.do_execute(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 608, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.UndefinedColumn: column repo.forks_count does not exist
+LINE 5:                 SUM(repo.forks_count) AS total_forks
+                            ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/paulsharratt/Documents/Hertie/Semester 4/03 - Master's Thesis/thesis_stf/scripts/functions/control_variables/number_of_forks_per_month_function.py", line 69, in number_of_forks_per_month
+    forks_df = pd.read_sql_query(query, con=engine)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 397, in read_sql_query
+    return pandas_sql.read_query(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 1560, in read_query
+    result = self.execute(*args)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 1405, in execute
+    return self.connectable.execution_options().execute(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 2235, in execute
+    return connection.execute(statement, *multiparams, **params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1003, in execute
+    return self._execute_text(object_, multiparams, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1172, in _execute_text
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1316, in _execute_context
+    self._handle_dbapi_exception(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1510, in _handle_dbapi_exception
+    util.raise_(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/util/compat.py", line 182, in raise_
+    raise exception
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1276, in _execute_context
+    self.dialect.do_execute(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 608, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedColumn) column repo.forks_count does not exist
+LINE 5:                 SUM(repo.forks_count) AS total_forks
+                            ^
+
+[SQL: 
+        WITH ForksByMonth AS (
+            SELECT
+                DATE_TRUNC('month', repo.repo_added) AS month,
+                SUM(repo.forks_count) AS total_forks
+            FROM
+                augur_data.repo
+            JOIN
+                augur_data.repo_groups ON repo.repo_group_id = repo_groups.repo_group_id
+            WHERE
+                LOWER(repo_groups.rg_name) = LOWER('apache')
+                AND repo.repo_added BETWEEN '2016-01-01' AND '2024-05-01'
+            GROUP BY
+                DATE_TRUNC('month', repo.repo_added)
+        ),
+        CumulativeForks AS (
+            SELECT
+                month,
+                SUM(total_forks) OVER (ORDER BY month) AS cumulative_forks
+            FROM
+                ForksByMonth
+        )
+        SELECT
+            month,
+            cumulative_forks
+        FROM
+            CumulativeForks
+        ORDER BY
+            month;
+    ]
+(Background on this error at: http://sqlalche.me/e/13/f405)
+2024-04-21 17:27:24,877:ERROR:SQL query failed for organization apache: (psycopg2.errors.UndefinedColumn) column repo.forks_count does not exist
+LINE 5:                 SUM(repo.forks_count) AS total_forks
+                            ^
+
+[SQL: 
+        WITH ForksByMonth AS (
+            SELECT
+                DATE_TRUNC('month', repo.repo_added) AS month,
+                SUM(repo.forks_count) AS total_forks
+            FROM
+                augur_data.repo
+            JOIN
+                augur_data.repo_groups ON repo.repo_group_id = repo_groups.repo_group_id
+            WHERE
+                LOWER(repo_groups.rg_name) = LOWER('apache')
+                AND repo.repo_added BETWEEN '2016-01-01' AND '2024-05-01'
+            GROUP BY
+                DATE_TRUNC('month', repo.repo_added)
+        ),
+        CumulativeForks AS (
+            SELECT
+                month,
+                SUM(total_forks) OVER (ORDER BY month) AS cumulative_forks
+            FROM
+                ForksByMonth
+        )
+        SELECT
+            month,
+            cumulative_forks
+        FROM
+            CumulativeForks
+        ORDER BY
+            month;
+    ]
+(Background on this error at: http://sqlalche.me/e/13/f405)
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1276, in _execute_context
+    self.dialect.do_execute(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 608, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.UndefinedColumn: column repo.forks_count does not exist
+LINE 5:                 SUM(repo.forks_count) AS total_forks
+                            ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/paulsharratt/Documents/Hertie/Semester 4/03 - Master's Thesis/thesis_stf/scripts/functions/control_variables/number_of_forks_per_month_function.py", line 69, in number_of_forks_per_month
+    forks_df = pd.read_sql_query(query, con=engine)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 397, in read_sql_query
+    return pandas_sql.read_query(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 1560, in read_query
+    result = self.execute(*args)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 1405, in execute
+    return self.connectable.execution_options().execute(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 2235, in execute
+    return connection.execute(statement, *multiparams, **params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1003, in execute
+    return self._execute_text(object_, multiparams, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1172, in _execute_text
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1316, in _execute_context
+    self._handle_dbapi_exception(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1510, in _handle_dbapi_exception
+    util.raise_(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/util/compat.py", line 182, in raise_
+    raise exception
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1276, in _execute_context
+    self.dialect.do_execute(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 608, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedColumn) column repo.forks_count does not exist
+LINE 5:                 SUM(repo.forks_count) AS total_forks
+                            ^
+
+[SQL: 
+        WITH ForksByMonth AS (
+            SELECT
+                DATE_TRUNC('month', repo.repo_added) AS month,
+                SUM(repo.forks_count) AS total_forks
+            FROM
+                augur_data.repo
+            JOIN
+                augur_data.repo_groups ON repo.repo_group_id = repo_groups.repo_group_id
+            WHERE
+                LOWER(repo_groups.rg_name) = LOWER('apache')
+                AND repo.repo_added BETWEEN '2016-01-01' AND '2024-05-01'
+            GROUP BY
+                DATE_TRUNC('month', repo.repo_added)
+        ),
+        CumulativeForks AS (
+            SELECT
+                month,
+                SUM(total_forks) OVER (ORDER BY month) AS cumulative_forks
+            FROM
+                ForksByMonth
+        )
+        SELECT
+            month,
+            cumulative_forks
+        FROM
+            CumulativeForks
+        ORDER BY
+            month;
+    ]
+(Background on this error at: http://sqlalche.me/e/13/f405)
+2024-04-21 17:27:24,885:ERROR:Failed to fetch programming language data due to: Could not parse rfc1738 URL from string 'apache'
+2024-04-21 17:27:47,781:ERROR:Failed to fetch programming language data due to: Could not parse rfc1738 URL from string 'apache'
+2024-04-21 17:28:46,144:ERROR:SQL query failed for organization curl: (psycopg2.errors.UndefinedColumn) column repo.forks_count does not exist
+LINE 5:                 SUM(repo.forks_count) AS total_forks
+                            ^
+
+[SQL: 
+        WITH ForksByMonth AS (
+            SELECT
+                DATE_TRUNC('month', repo.repo_added) AS month,
+                SUM(repo.forks_count) AS total_forks
+            FROM
+                augur_data.repo
+            JOIN
+                augur_data.repo_groups ON repo.repo_group_id = repo_groups.repo_group_id
+            WHERE
+                LOWER(repo_groups.rg_name) = LOWER('curl')
+                AND repo.repo_added BETWEEN '2016-01-01' AND '2024-05-01'
+            GROUP BY
+                DATE_TRUNC('month', repo.repo_added)
+        ),
+        CumulativeForks AS (
+            SELECT
+                month,
+                SUM(total_forks) OVER (ORDER BY month) AS cumulative_forks
+            FROM
+                ForksByMonth
+        )
+        SELECT
+            month,
+            cumulative_forks
+        FROM
+            CumulativeForks
+        ORDER BY
+            month;
+    ]
+(Background on this error at: http://sqlalche.me/e/13/f405)
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1276, in _execute_context
+    self.dialect.do_execute(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 608, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.UndefinedColumn: column repo.forks_count does not exist
+LINE 5:                 SUM(repo.forks_count) AS total_forks
+                            ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/paulsharratt/Documents/Hertie/Semester 4/03 - Master's Thesis/thesis_stf/scripts/functions/control_variables/number_of_forks_per_month_function.py", line 69, in number_of_forks_per_month
+    forks_df = pd.read_sql_query(query, con=engine)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 397, in read_sql_query
+    return pandas_sql.read_query(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 1560, in read_query
+    result = self.execute(*args)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 1405, in execute
+    return self.connectable.execution_options().execute(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 2235, in execute
+    return connection.execute(statement, *multiparams, **params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1003, in execute
+    return self._execute_text(object_, multiparams, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1172, in _execute_text
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1316, in _execute_context
+    self._handle_dbapi_exception(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1510, in _handle_dbapi_exception
+    util.raise_(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/util/compat.py", line 182, in raise_
+    raise exception
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1276, in _execute_context
+    self.dialect.do_execute(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 608, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedColumn) column repo.forks_count does not exist
+LINE 5:                 SUM(repo.forks_count) AS total_forks
+                            ^
+
+[SQL: 
+        WITH ForksByMonth AS (
+            SELECT
+                DATE_TRUNC('month', repo.repo_added) AS month,
+                SUM(repo.forks_count) AS total_forks
+            FROM
+                augur_data.repo
+            JOIN
+                augur_data.repo_groups ON repo.repo_group_id = repo_groups.repo_group_id
+            WHERE
+                LOWER(repo_groups.rg_name) = LOWER('curl')
+                AND repo.repo_added BETWEEN '2016-01-01' AND '2024-05-01'
+            GROUP BY
+                DATE_TRUNC('month', repo.repo_added)
+        ),
+        CumulativeForks AS (
+            SELECT
+                month,
+                SUM(total_forks) OVER (ORDER BY month) AS cumulative_forks
+            FROM
+                ForksByMonth
+        )
+        SELECT
+            month,
+            cumulative_forks
+        FROM
+            CumulativeForks
+        ORDER BY
+            month;
+    ]
+(Background on this error at: http://sqlalche.me/e/13/f405)
+2024-04-21 17:28:46,147:ERROR:Failed to fetch programming language data due to: Could not parse rfc1738 URL from string 'curl'
+2024-04-21 17:40:21,422:ERROR:SQL query failed for organization curl: (psycopg2.errors.UndefinedColumn) column repo.forks_count does not exist
+LINE 5:                 SUM(repo.forks_count) AS total_forks
+                            ^
+
+[SQL: 
+        WITH ForksByMonth AS (
+            SELECT
+                DATE_TRUNC('month', repo.repo_added) AS month,
+                SUM(repo.forks_count) AS total_forks
+            FROM
+                augur_data.repo
+            JOIN
+                augur_data.repo_groups ON repo.repo_group_id = repo_groups.repo_group_id
+            WHERE
+                LOWER(repo_groups.rg_name) = LOWER('curl')
+                AND repo.repo_added BETWEEN '2016-01-01' AND '2024-05-01'
+            GROUP BY
+                DATE_TRUNC('month', repo.repo_added)
+        ),
+        CumulativeForks AS (
+            SELECT
+                month,
+                SUM(total_forks) OVER (ORDER BY month) AS cumulative_forks
+            FROM
+                ForksByMonth
+        )
+        SELECT
+            month,
+            cumulative_forks
+        FROM
+            CumulativeForks
+        ORDER BY
+            month;
+    ]
+(Background on this error at: http://sqlalche.me/e/13/f405)
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1276, in _execute_context
+    self.dialect.do_execute(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 608, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.UndefinedColumn: column repo.forks_count does not exist
+LINE 5:                 SUM(repo.forks_count) AS total_forks
+                            ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/paulsharratt/Documents/Hertie/Semester 4/03 - Master's Thesis/thesis_stf/scripts/functions/control_variables/number_of_forks_per_month_function.py", line 69, in number_of_forks_per_month
+    forks_df = pd.read_sql_query(query, con=engine)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 397, in read_sql_query
+    return pandas_sql.read_query(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 1560, in read_query
+    result = self.execute(*args)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 1405, in execute
+    return self.connectable.execution_options().execute(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 2235, in execute
+    return connection.execute(statement, *multiparams, **params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1003, in execute
+    return self._execute_text(object_, multiparams, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1172, in _execute_text
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1316, in _execute_context
+    self._handle_dbapi_exception(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1510, in _handle_dbapi_exception
+    util.raise_(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/util/compat.py", line 182, in raise_
+    raise exception
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1276, in _execute_context
+    self.dialect.do_execute(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 608, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedColumn) column repo.forks_count does not exist
+LINE 5:                 SUM(repo.forks_count) AS total_forks
+                            ^
+
+[SQL: 
+        WITH ForksByMonth AS (
+            SELECT
+                DATE_TRUNC('month', repo.repo_added) AS month,
+                SUM(repo.forks_count) AS total_forks
+            FROM
+                augur_data.repo
+            JOIN
+                augur_data.repo_groups ON repo.repo_group_id = repo_groups.repo_group_id
+            WHERE
+                LOWER(repo_groups.rg_name) = LOWER('curl')
+                AND repo.repo_added BETWEEN '2016-01-01' AND '2024-05-01'
+            GROUP BY
+                DATE_TRUNC('month', repo.repo_added)
+        ),
+        CumulativeForks AS (
+            SELECT
+                month,
+                SUM(total_forks) OVER (ORDER BY month) AS cumulative_forks
+            FROM
+                ForksByMonth
+        )
+        SELECT
+            month,
+            cumulative_forks
+        FROM
+            CumulativeForks
+        ORDER BY
+            month;
+    ]
+(Background on this error at: http://sqlalche.me/e/13/f405)

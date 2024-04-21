@@ -1,0 +1,514 @@
+2024-04-21 18:03:01,232:ERROR:SQL query failed for organization curl: (psycopg2.errors.UndefinedColumn) column repo.forks_count does not exist
+LINE 5:                 SUM(repo.forks_count) AS total_forks
+                            ^
+
+[SQL: 
+        WITH ForksByMonth AS (
+            SELECT
+                DATE_TRUNC('month', repo.repo_added) AS month,
+                SUM(repo.forks_count) AS total_forks
+            FROM
+                augur_data.repo
+            JOIN
+                augur_data.repo_groups ON repo.repo_group_id = repo_groups.repo_group_id
+            WHERE
+                LOWER(repo_groups.rg_name) = LOWER('curl')
+                AND repo.repo_added BETWEEN '2016-01-01' AND '2024-05-01'
+            GROUP BY
+                DATE_TRUNC('month', repo.repo_added)
+        ),
+        CumulativeForks AS (
+            SELECT
+                month,
+                SUM(total_forks) OVER (ORDER BY month) AS cumulative_forks
+            FROM
+                ForksByMonth
+        )
+        SELECT
+            month,
+            cumulative_forks
+        FROM
+            CumulativeForks
+        ORDER BY
+            month;
+    ]
+(Background on this error at: http://sqlalche.me/e/13/f405)
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1276, in _execute_context
+    self.dialect.do_execute(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 608, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.UndefinedColumn: column repo.forks_count does not exist
+LINE 5:                 SUM(repo.forks_count) AS total_forks
+                            ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/paulsharratt/Documents/Hertie/Semester 4/03 - Master's Thesis/thesis_stf/scripts/functions/control_variables/number_of_forks_per_month_function.py", line 69, in number_of_forks_per_month
+    forks_df = pd.read_sql_query(query, con=engine)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 397, in read_sql_query
+    return pandas_sql.read_query(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 1560, in read_query
+    result = self.execute(*args)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 1405, in execute
+    return self.connectable.execution_options().execute(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 2235, in execute
+    return connection.execute(statement, *multiparams, **params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1003, in execute
+    return self._execute_text(object_, multiparams, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1172, in _execute_text
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1316, in _execute_context
+    self._handle_dbapi_exception(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1510, in _handle_dbapi_exception
+    util.raise_(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/util/compat.py", line 182, in raise_
+    raise exception
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1276, in _execute_context
+    self.dialect.do_execute(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 608, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedColumn) column repo.forks_count does not exist
+LINE 5:                 SUM(repo.forks_count) AS total_forks
+                            ^
+
+[SQL: 
+        WITH ForksByMonth AS (
+            SELECT
+                DATE_TRUNC('month', repo.repo_added) AS month,
+                SUM(repo.forks_count) AS total_forks
+            FROM
+                augur_data.repo
+            JOIN
+                augur_data.repo_groups ON repo.repo_group_id = repo_groups.repo_group_id
+            WHERE
+                LOWER(repo_groups.rg_name) = LOWER('curl')
+                AND repo.repo_added BETWEEN '2016-01-01' AND '2024-05-01'
+            GROUP BY
+                DATE_TRUNC('month', repo.repo_added)
+        ),
+        CumulativeForks AS (
+            SELECT
+                month,
+                SUM(total_forks) OVER (ORDER BY month) AS cumulative_forks
+            FROM
+                ForksByMonth
+        )
+        SELECT
+            month,
+            cumulative_forks
+        FROM
+            CumulativeForks
+        ORDER BY
+            month;
+    ]
+(Background on this error at: http://sqlalche.me/e/13/f405)
+2024-04-21 19:07:30,676:ERROR:Failed to fetch pull request data for Engine(postgresql+psycopg2://pauluk:***@data.chaoss.io:5432/augur): Could not parse rfc1738 URL from string '2024-05-01'
+Traceback (most recent call last):
+  File "/Users/paulsharratt/Documents/Hertie/Semester 4/03 - Master's Thesis/thesis_stf/scripts/functions/control_variables/number_of_PRs_per_month_function.py", line 55, in number_of_pull_requests_per_month
+    pull_requests_df = pd.read_sql_query(query, con=engine)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 396, in read_sql_query
+    pandas_sql = pandasSQL_builder(con)
+                 ^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 754, in pandasSQL_builder
+    con = sqlalchemy.create_engine(con)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/__init__.py", line 525, in create_engine
+    return strategy.create(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/strategies.py", line 54, in create
+    u = url.make_url(name_or_url)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/url.py", line 229, in make_url
+    return _parse_rfc1738_args(name_or_url)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/url.py", line 290, in _parse_rfc1738_args
+    raise exc.ArgumentError(
+sqlalchemy.exc.ArgumentError: Could not parse rfc1738 URL from string '2024-05-01'
+2024-04-21 19:08:47,425:ERROR:Failed to fetch pull request data for Engine(postgresql+psycopg2://pauluk:***@data.chaoss.io:5432/augur): Could not parse rfc1738 URL from string '2024-05-01'
+Traceback (most recent call last):
+  File "/Users/paulsharratt/Documents/Hertie/Semester 4/03 - Master's Thesis/thesis_stf/scripts/functions/control_variables/number_of_PRs_per_month_function.py", line 67, in number_of_pull_requests_per_month
+    pull_requests_df = pd.read_sql_query(query, con=engine)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 396, in read_sql_query
+    pandas_sql = pandasSQL_builder(con)
+                 ^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 754, in pandasSQL_builder
+    con = sqlalchemy.create_engine(con)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/__init__.py", line 525, in create_engine
+    return strategy.create(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/strategies.py", line 54, in create
+    u = url.make_url(name_or_url)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/url.py", line 229, in make_url
+    return _parse_rfc1738_args(name_or_url)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/url.py", line 290, in _parse_rfc1738_args
+    raise exc.ArgumentError(
+sqlalchemy.exc.ArgumentError: Could not parse rfc1738 URL from string '2024-05-01'
+2024-04-21 19:12:09,253:ERROR:Failed to fetch pull request data for Engine(postgresql+psycopg2://pauluk:***@data.chaoss.io:5432/augur): Could not parse rfc1738 URL from string '2024-05-01'
+Traceback (most recent call last):
+  File "/Users/paulsharratt/Documents/Hertie/Semester 4/03 - Master's Thesis/thesis_stf/scripts/functions/control_variables/number_of_PRs_per_month_function.py", line 67, in fetch_pull_request_data
+    data_open_closed = pd.read_sql_query(query_open_closed, con=engine)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 396, in read_sql_query
+    pandas_sql = pandasSQL_builder(con)
+                 ^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 754, in pandasSQL_builder
+    con = sqlalchemy.create_engine(con)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/__init__.py", line 525, in create_engine
+    return strategy.create(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/strategies.py", line 54, in create
+    u = url.make_url(name_or_url)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/url.py", line 229, in make_url
+    return _parse_rfc1738_args(name_or_url)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/url.py", line 290, in _parse_rfc1738_args
+    raise exc.ArgumentError(
+sqlalchemy.exc.ArgumentError: Could not parse rfc1738 URL from string '2024-05-01'
+2024-04-21 23:06:55,384:ERROR:SQL query failed for organization curl: (psycopg2.errors.UndefinedColumn) column repo.forks_count does not exist
+LINE 5:                 SUM(repo.forks_count) AS total_forks
+                            ^
+
+[SQL: 
+        WITH ForksByMonth AS (
+            SELECT
+                DATE_TRUNC('month', repo.repo_added) AS month,
+                SUM(repo.forks_count) AS total_forks
+            FROM
+                augur_data.repo
+            JOIN
+                augur_data.repo_groups ON repo.repo_group_id = repo_groups.repo_group_id
+            WHERE
+                LOWER(repo_groups.rg_name) = LOWER('curl')
+                AND repo.repo_added BETWEEN '2016-01-01' AND '2024-05-01'
+            GROUP BY
+                DATE_TRUNC('month', repo.repo_added)
+        ),
+        CumulativeForks AS (
+            SELECT
+                month,
+                SUM(total_forks) OVER (ORDER BY month) AS cumulative_forks
+            FROM
+                ForksByMonth
+        )
+        SELECT
+            month,
+            cumulative_forks
+        FROM
+            CumulativeForks
+        ORDER BY
+            month;
+    ]
+(Background on this error at: http://sqlalche.me/e/13/f405)
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1276, in _execute_context
+    self.dialect.do_execute(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 608, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.UndefinedColumn: column repo.forks_count does not exist
+LINE 5:                 SUM(repo.forks_count) AS total_forks
+                            ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/paulsharratt/Documents/Hertie/Semester 4/03 - Master's Thesis/thesis_stf/scripts/functions/control_variables/number_of_forks_per_month_function.py", line 69, in number_of_forks_per_month
+    forks_df = pd.read_sql_query(query, con=engine)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 397, in read_sql_query
+    return pandas_sql.read_query(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 1560, in read_query
+    result = self.execute(*args)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 1405, in execute
+    return self.connectable.execution_options().execute(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 2235, in execute
+    return connection.execute(statement, *multiparams, **params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1003, in execute
+    return self._execute_text(object_, multiparams, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1172, in _execute_text
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1316, in _execute_context
+    self._handle_dbapi_exception(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1510, in _handle_dbapi_exception
+    util.raise_(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/util/compat.py", line 182, in raise_
+    raise exception
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1276, in _execute_context
+    self.dialect.do_execute(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 608, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedColumn) column repo.forks_count does not exist
+LINE 5:                 SUM(repo.forks_count) AS total_forks
+                            ^
+
+[SQL: 
+        WITH ForksByMonth AS (
+            SELECT
+                DATE_TRUNC('month', repo.repo_added) AS month,
+                SUM(repo.forks_count) AS total_forks
+            FROM
+                augur_data.repo
+            JOIN
+                augur_data.repo_groups ON repo.repo_group_id = repo_groups.repo_group_id
+            WHERE
+                LOWER(repo_groups.rg_name) = LOWER('curl')
+                AND repo.repo_added BETWEEN '2016-01-01' AND '2024-05-01'
+            GROUP BY
+                DATE_TRUNC('month', repo.repo_added)
+        ),
+        CumulativeForks AS (
+            SELECT
+                month,
+                SUM(total_forks) OVER (ORDER BY month) AS cumulative_forks
+            FROM
+                ForksByMonth
+        )
+        SELECT
+            month,
+            cumulative_forks
+        FROM
+            CumulativeForks
+        ORDER BY
+            month;
+    ]
+(Background on this error at: http://sqlalche.me/e/13/f405)
+2024-04-21 23:06:55,675:ERROR:Failed to fetch pull request data for Engine(postgresql+psycopg2://pauluk:***@data.chaoss.io:5432/augur): Could not parse rfc1738 URL from string '2024-05-01'
+Traceback (most recent call last):
+  File "/Users/paulsharratt/Documents/Hertie/Semester 4/03 - Master's Thesis/thesis_stf/scripts/functions/control_variables/number_of_PRs_per_month_function.py", line 67, in fetch_pull_request_data
+    data_open_closed = pd.read_sql_query(query_open_closed, con=engine)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 396, in read_sql_query
+    pandas_sql = pandasSQL_builder(con)
+                 ^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 754, in pandasSQL_builder
+    con = sqlalchemy.create_engine(con)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/__init__.py", line 525, in create_engine
+    return strategy.create(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/strategies.py", line 54, in create
+    u = url.make_url(name_or_url)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/url.py", line 229, in make_url
+    return _parse_rfc1738_args(name_or_url)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/url.py", line 290, in _parse_rfc1738_args
+    raise exc.ArgumentError(
+sqlalchemy.exc.ArgumentError: Could not parse rfc1738 URL from string '2024-05-01'
+2024-04-21 23:10:22,460:ERROR:Failed to fetch pull request data for Engine(postgresql+psycopg2://pauluk:***@data.chaoss.io:5432/augur): Could not parse rfc1738 URL from string '2024-05-01'
+Traceback (most recent call last):
+  File "/Users/paulsharratt/Documents/Hertie/Semester 4/03 - Master's Thesis/thesis_stf/scripts/functions/control_variables/number_of_PRs_per_month_function.py", line 67, in fetch_pull_request_data
+    data_open_closed = pd.read_sql_query(query_open_closed, con=engine)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 396, in read_sql_query
+    pandas_sql = pandasSQL_builder(con)
+                 ^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 754, in pandasSQL_builder
+    con = sqlalchemy.create_engine(con)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/__init__.py", line 525, in create_engine
+    return strategy.create(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/strategies.py", line 54, in create
+    u = url.make_url(name_or_url)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/url.py", line 229, in make_url
+    return _parse_rfc1738_args(name_or_url)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/url.py", line 290, in _parse_rfc1738_args
+    raise exc.ArgumentError(
+sqlalchemy.exc.ArgumentError: Could not parse rfc1738 URL from string '2024-05-01'
+2024-04-21 23:10:22,464:ERROR:Failed to fetch pull request metrics for Engine(postgresql+psycopg2://pauluk:***@data.chaoss.io:5432/augur): Could not parse rfc1738 URL from string '2024-05-01'
+Traceback (most recent call last):
+  File "/Users/paulsharratt/Documents/Hertie/Semester 4/03 - Master's Thesis/thesis_stf/scripts/functions/control_variables/number_of_PRs_per_month_function.py", line 150, in fetch_pull_request_metrics
+    unique_pr_df = pd.read_sql_query(unique_pr_query, con=engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 396, in read_sql_query
+    pandas_sql = pandasSQL_builder(con)
+                 ^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 754, in pandasSQL_builder
+    con = sqlalchemy.create_engine(con)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/__init__.py", line 525, in create_engine
+    return strategy.create(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/strategies.py", line 54, in create
+    u = url.make_url(name_or_url)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/url.py", line 229, in make_url
+    return _parse_rfc1738_args(name_or_url)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/url.py", line 290, in _parse_rfc1738_args
+    raise exc.ArgumentError(
+sqlalchemy.exc.ArgumentError: Could not parse rfc1738 URL from string '2024-05-01'
+2024-04-21 23:13:50,133:ERROR:Failed to fetch pull request data for curl: dict is not a sequence
+Traceback (most recent call last):
+  File "/Users/paulsharratt/Documents/Hertie/Semester 4/03 - Master's Thesis/thesis_stf/scripts/functions/control_variables/number_of_PRs_per_month_function.py", line 67, in fetch_pull_request_data
+    data_open_closed = pd.read_sql_query(query_open_closed, con=engine)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 397, in read_sql_query
+    return pandas_sql.read_query(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 1560, in read_query
+    result = self.execute(*args)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 1405, in execute
+    return self.connectable.execution_options().execute(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 2235, in execute
+    return connection.execute(statement, *multiparams, **params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1003, in execute
+    return self._execute_text(object_, multiparams, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1172, in _execute_text
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1316, in _execute_context
+    self._handle_dbapi_exception(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1514, in _handle_dbapi_exception
+    util.raise_(exc_info[1], with_traceback=exc_info[2])
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/util/compat.py", line 182, in raise_
+    raise exception
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1276, in _execute_context
+    self.dialect.do_execute(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 608, in do_execute
+    cursor.execute(statement, parameters)
+TypeError: dict is not a sequence
+2024-04-21 23:51:54,014:ERROR:SQL query failed for organization curl: (psycopg2.errors.UndefinedColumn) column repo.forks_count does not exist
+LINE 5:                 SUM(repo.forks_count) AS total_forks
+                            ^
+
+[SQL: 
+        WITH ForksByMonth AS (
+            SELECT
+                DATE_TRUNC('month', repo.repo_added) AS month,
+                SUM(repo.forks_count) AS total_forks
+            FROM
+                augur_data.repo
+            JOIN
+                augur_data.repo_groups ON repo.repo_group_id = repo_groups.repo_group_id
+            WHERE
+                LOWER(repo_groups.rg_name) = LOWER('curl')
+                AND repo.repo_added BETWEEN '2016-01-01' AND '2024-05-01'
+            GROUP BY
+                DATE_TRUNC('month', repo.repo_added)
+        ),
+        CumulativeForks AS (
+            SELECT
+                month,
+                SUM(total_forks) OVER (ORDER BY month) AS cumulative_forks
+            FROM
+                ForksByMonth
+        )
+        SELECT
+            month,
+            cumulative_forks
+        FROM
+            CumulativeForks
+        ORDER BY
+            month;
+    ]
+(Background on this error at: http://sqlalche.me/e/13/f405)
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1276, in _execute_context
+    self.dialect.do_execute(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 608, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.UndefinedColumn: column repo.forks_count does not exist
+LINE 5:                 SUM(repo.forks_count) AS total_forks
+                            ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/paulsharratt/Documents/Hertie/Semester 4/03 - Master's Thesis/thesis_stf/scripts/functions/control_variables/number_of_forks_per_month_function.py", line 69, in number_of_forks_per_month
+    forks_df = pd.read_sql_query(query, con=engine)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 397, in read_sql_query
+    return pandas_sql.read_query(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 1560, in read_query
+    result = self.execute(*args)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/pandas/io/sql.py", line 1405, in execute
+    return self.connectable.execution_options().execute(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 2235, in execute
+    return connection.execute(statement, *multiparams, **params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1003, in execute
+    return self._execute_text(object_, multiparams, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1172, in _execute_text
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1316, in _execute_context
+    self._handle_dbapi_exception(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1510, in _handle_dbapi_exception
+    util.raise_(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/util/compat.py", line 182, in raise_
+    raise exception
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1276, in _execute_context
+    self.dialect.do_execute(
+  File "/opt/anaconda3/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 608, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedColumn) column repo.forks_count does not exist
+LINE 5:                 SUM(repo.forks_count) AS total_forks
+                            ^
+
+[SQL: 
+        WITH ForksByMonth AS (
+            SELECT
+                DATE_TRUNC('month', repo.repo_added) AS month,
+                SUM(repo.forks_count) AS total_forks
+            FROM
+                augur_data.repo
+            JOIN
+                augur_data.repo_groups ON repo.repo_group_id = repo_groups.repo_group_id
+            WHERE
+                LOWER(repo_groups.rg_name) = LOWER('curl')
+                AND repo.repo_added BETWEEN '2016-01-01' AND '2024-05-01'
+            GROUP BY
+                DATE_TRUNC('month', repo.repo_added)
+        ),
+        CumulativeForks AS (
+            SELECT
+                month,
+                SUM(total_forks) OVER (ORDER BY month) AS cumulative_forks
+            FROM
+                ForksByMonth
+        )
+        SELECT
+            month,
+            cumulative_forks
+        FROM
+            CumulativeForks
+        ORDER BY
+            month;
+    ]
+(Background on this error at: http://sqlalche.me/e/13/f405)

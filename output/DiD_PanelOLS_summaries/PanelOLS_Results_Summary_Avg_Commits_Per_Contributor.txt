@@ -1,0 +1,41 @@
+                                 PanelOLS Estimation Summary                                 
+=============================================================================================
+Dep. Variable:     log_avg_commits_per_contributor   R-squared:                        0.1754
+Estimator:                                PanelOLS   R-squared (Between):             -0.0386
+No. Observations:                              433   R-squared (Within):               0.2021
+Date:                             Mon, Apr 22 2024   R-squared (Overall):              0.0875
+Time:                                     16:33:27   Log-likelihood                   -218.11
+Cov. Estimator:                          Clustered                                           
+                                                     F-statistic:                      7.4249
+Entities:                                       11   P-value                           0.0000
+Avg Obs:                                    39.364   Distribution:                  F(10,349)
+Min Obs:                                    1.0000                                           
+Max Obs:                                    139.00   F-statistic (robust):         -7.645e+13
+                                                     P-value                           1.0000
+Time periods:                                   64   Distribution:                  F(10,349)
+Avg Obs:                                    6.7656                                           
+Min Obs:                                    2.0000                                           
+Max Obs:                                    18.000                                           
+                                                                                             
+                                       Parameter Estimates                                       
+=================================================================================================
+                               Parameter  Std. Err.     T-stat    P-value    Lower CI    Upper CI
+-------------------------------------------------------------------------------------------------
+const                             4.8752     1.3901     3.5071     0.0005      2.1412      7.6093
+treated                          -0.3457     0.0829    -4.1696     0.0000     -0.5088     -0.1827
+log_active_repositories          -0.1067     0.0849    -1.2562     0.2099     -0.2737      0.0603
+log_contributors                  0.2028     0.1266     1.6024     0.1100     -0.0461      0.4518
+log_release_count                 0.0467     0.0490     0.9516     0.3419     -0.0498      0.1431
+log_unique_contributors           0.0011     0.0305     0.0376     0.9701     -0.0588      0.0611
+log_running_total_open_issues    -0.4519     0.1501    -3.0110     0.0028     -0.7470     -0.1567
+log_average_closure_days         -0.1236     0.0722    -1.7120     0.0878     -0.2655      0.0184
+log_unique_pull_requests         -0.6577     2.0098    -0.3272     0.7437     -4.6106      3.2952
+log_open_pull_requests            0.2078     0.1361     1.5273     0.1276     -0.0598      0.4754
+log_closed_pull_requests          1.0905     1.9770     0.5516     0.5816     -2.7979      4.9789
+=================================================================================================
+
+F-test for Poolability: 3.2962
+P-value: 0.0000
+Distribution: F(73,349)
+
+Included effects: Entity, Time

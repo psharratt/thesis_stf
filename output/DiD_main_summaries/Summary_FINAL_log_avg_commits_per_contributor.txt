@@ -1,0 +1,14 @@
+OLS estimation, Dep. Var.: log_avg_commits_per_contributor
+Observations: 1,054
+Fixed-effects: org_name: 19,  time_period: 64
+Standard-errors: Clustered (org_name) 
+                     Estimate Std. Error   t value   Pr(>|t|)    
+treated              1.300507   0.167519  7.763328 3.7486e-07 ***
+post                 0.719574   0.423558  1.698881 1.0656e-01    
+age                 -0.050176   0.011165 -4.494066 2.8065e-04 ***
+active_repositories  0.000720   0.000931  0.774063 4.4894e-01    
+treated:post        -1.756350   0.324199 -5.417513 3.7953e-05 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.798849     Adj. R2: 0.512742
+                 Within R2: 0.025285

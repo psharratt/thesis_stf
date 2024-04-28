@@ -1,0 +1,41 @@
+                             PanelOLS Estimation Summary                              
+======================================================================================
+Dep. Variable:     log_average_closure_days   R-squared:                        0.1104
+Estimator:                         PanelOLS   R-squared (Between):             -0.0385
+No. Observations:                       433   R-squared (Within):               0.2156
+Date:                      Mon, Apr 22 2024   R-squared (Overall):              0.2853
+Time:                              16:41:27   Log-likelihood                   -298.40
+Cov. Estimator:                   Clustered                                           
+                                              F-statistic:                      4.3315
+Entities:                                11   P-value                           0.0000
+Avg Obs:                             39.364   Distribution:                  F(10,349)
+Min Obs:                             1.0000                                           
+Max Obs:                             139.00   F-statistic (robust):         -1.728e+10
+                                              P-value                           1.0000
+Time periods:                            64   Distribution:                  F(10,349)
+Avg Obs:                             6.7656                                           
+Min Obs:                             2.0000                                           
+Max Obs:                             18.000                                           
+                                                                                      
+                                        Parameter Estimates                                        
+===================================================================================================
+                                 Parameter  Std. Err.     T-stat    P-value    Lower CI    Upper CI
+---------------------------------------------------------------------------------------------------
+const                               2.3431     1.2838     1.8251     0.0688     -0.1819      4.8682
+treated                            -0.0990     0.2581    -0.3838     0.7014     -0.6066      0.4085
+log_active_repositories            -0.0311     0.0522    -0.5949     0.5523     -0.1338      0.0717
+log_running_total_open_issues       0.5169     0.1330     3.8875     0.0001      0.2554      0.7784
+log_contributors                    0.2060     0.1291     1.5952     0.1116     -0.0480      0.4600
+log_release_count                   0.0162     0.0806     0.2013     0.8406     -0.1422      0.1746
+log_unique_contributors             0.0261     0.0270     0.9656     0.3349     -0.0271      0.0792
+log_avg_commits_per_contributor    -0.1790     0.1334    -1.3421     0.1804     -0.4414      0.0833
+log_unique_pull_requests           -2.1820     1.4710    -1.4834     0.1389     -5.0751      0.7111
+log_open_pull_requests             -0.0876     0.1179    -0.7430     0.4580     -0.3195      0.1443
+log_closed_pull_requests            1.8804     1.3325     1.4111     0.1591     -0.7404      4.5012
+===================================================================================================
+
+F-test for Poolability: 6.3902
+P-value: 0.0000
+Distribution: F(73,349)
+
+Included effects: Entity, Time

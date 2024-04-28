@@ -1,0 +1,32 @@
+OLS estimation, Dep. Var.: log_average_closure_days
+Observations: 1,616 
+Fixed-effects: org_name: 18,  time_period: 64
+Standard-errors: Clustered (org_name) 
+                               Estimate Std. Error   t value Pr(>|t|) 
+treated                        0.265187   0.384754  0.689237  0.49997 
+lag_treated1                  -0.150706   0.175187 -0.860255  0.40162 
+lag_treated2                   0.316789   0.239040  1.325256  0.20262 
+lead_treated1                  0.052986   0.121646  0.435580  0.66862 
+lead_treated2                 -0.156428   0.098784 -1.583534  0.13172 
+treated:time_period2022-11-01 -0.894991   0.550516 -1.625731  0.12240 
+treated:time_period2022-12-01  0.668487   0.737635  0.906258  0.37747 
+treated:time_period2023-01-01 -0.125688   0.378445 -0.332116  0.74386 
+treated:time_period2023-02-01 -1.005479   0.738119 -1.362218  0.19091 
+treated:time_period2023-03-01 -1.073598   0.809153 -1.326816  0.20212 
+treated:time_period2023-04-01 -0.280441   0.445032 -0.630159  0.53697 
+treated:time_period2023-05-01  0.175171   0.527984  0.331773  0.74412 
+treated:time_period2023-06-01 -0.473849   0.353678 -1.339774  0.19795 
+treated:time_period2023-07-01 -0.462726   0.523187 -0.884437  0.38880 
+treated:time_period2023-08-01 -0.317383   0.353379 -0.898136  0.38166 
+treated:time_period2023-09-01 -0.289600   0.514006 -0.563418  0.58051 
+treated:time_period2023-10-01  0.308628   0.336180  0.918045  0.37144 
+treated:time_period2023-11-01  0.476588   0.606832  0.785370  0.44305 
+treated:time_period2023-12-01 -0.347908   0.541937 -0.641971  0.52945 
+treated:time_period2024-01-01 -0.059577   0.399451 -0.149147  0.88319 
+treated:time_period2024-02-01 -0.582999   0.344953 -1.690083  0.10926 
+treated:time_period2024-03-01 -0.265003   0.360485 -0.735130  0.47228 
+... 1 variable was removed because of collinearity (treated:time_period2024-04-01)
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.948164     Adj. R2: 0.510556
+                 Within R2: 0.016675

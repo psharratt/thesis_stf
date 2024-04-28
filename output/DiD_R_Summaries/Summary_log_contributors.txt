@@ -1,0 +1,25 @@
+OLS estimation, Dep. Var.: log_contributors
+Observations: 992 
+Fixed-effects: org_name: 16,  time_period: 64
+Standard-errors: Clustered (org_name) 
+                               Estimate Std. Error   t value   Pr(>|t|)    
+treated                       -1.153135   0.475823 -2.423455 2.8487e-02 *  
+treated:time_period2022-11-01  1.225979   0.398834  3.073911 7.7176e-03 ** 
+treated:time_period2022-12-01  1.661838   0.616399  2.696044 1.6590e-02 *  
+treated:time_period2023-01-01  1.620411   0.549260  2.950169 9.9300e-03 ** 
+treated:time_period2023-02-01  1.411051   0.512090  2.755473 1.4723e-02 *  
+treated:time_period2023-03-01  1.567828   0.715968  2.189801 4.4758e-02 *  
+treated:time_period2023-04-01  1.448774   0.561482  2.580270 2.0903e-02 *  
+treated:time_period2023-05-01  2.047442   0.613852  3.335398 4.5187e-03 ** 
+treated:time_period2023-07-01  1.869633   0.550558  3.395890 3.9913e-03 ** 
+treated:time_period2023-08-01  2.903439   0.526883  5.510592 5.9854e-05 ***
+treated:time_period2023-09-01  1.708800   0.612565  2.789579 1.3746e-02 *  
+treated:time_period2023-10-01  0.746663   0.532823  1.401335 1.8146e-01    
+treated:time_period2023-11-01  0.595282   0.483275  1.231767 2.3700e-01    
+treated:time_period2023-12-01  0.080117   0.446372  0.179484 8.5996e-01    
+treated:time_period2024-03-01 -0.389314   0.555759 -0.700509 4.9433e-01    
+... 3 variables were removed because of collinearity (treated:time_period2024-01-01, treated:time_period2024-02-01 and treated:time_period2024-04-01)
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.291863     Adj. R2: 0.882823
+                 Within R2: 0.124598

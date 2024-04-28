@@ -59,6 +59,3 @@ if __name__ == "__main__":
     
     
 
-'''
-OK the output here isn't quite right, curl apparently has 
-'''

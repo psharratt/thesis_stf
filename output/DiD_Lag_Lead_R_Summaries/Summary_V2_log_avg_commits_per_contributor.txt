@@ -1,0 +1,32 @@
+OLS estimation, Dep. Var.: log_avg_commits_per_contributor
+Observations: 1,851 
+Fixed-effects: org_name: 21,  time_period: 64
+Standard-errors: Clustered (org_name) 
+                               Estimate Std. Error   t value Pr(>|t|)    
+treated                       -0.884413   0.828014 -1.068114 0.298193    
+lag_treated1                  -0.183757   0.116224 -1.581060 0.129550    
+lag_treated2                   0.111024   0.146057  0.760146 0.456036    
+lead_treated1                  0.044159   0.182931  0.241396 0.811706    
+lead_treated2                 -0.051675   0.139603 -0.370154 0.715159    
+treated:time_period2022-11-01  0.221201   0.888236  0.249034 0.805874    
+treated:time_period2022-12-01  1.955696   0.954674  2.048548 0.053860 .  
+treated:time_period2023-01-01  1.540526   0.987882  1.559424 0.134580    
+treated:time_period2023-02-01  1.616033   0.956331  1.689825 0.106590    
+treated:time_period2023-03-01  1.724524   0.862284  1.999950 0.059271 .  
+treated:time_period2023-04-01  0.850923   0.722038  1.178502 0.252429    
+treated:time_period2023-05-01  1.464069   0.912195  1.604996 0.124170    
+treated:time_period2023-06-01  1.683689   0.866020  1.944169 0.066077 .  
+treated:time_period2023-07-01  1.777574   1.086479  1.636086 0.117462    
+treated:time_period2023-08-01  0.921435   0.766398  1.202293 0.243292    
+treated:time_period2023-09-01  0.965424   0.763100  1.265134 0.220366    
+treated:time_period2023-10-01  0.841852   0.811104  1.037909 0.311699    
+treated:time_period2023-11-01  1.419115   0.794671  1.785789 0.089306 .  
+treated:time_period2023-12-01  0.810795   0.907165  0.893767 0.382076    
+treated:time_period2024-01-01  0.290279   0.640523  0.453191 0.655289    
+treated:time_period2024-02-01  0.314487   0.689215  0.456298 0.653092    
+treated:time_period2024-03-01  0.671362   0.403861  1.662359 0.112035    
+... 1 variable was removed because of collinearity (treated:time_period2024-04-01)
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.735452     Adj. R2: 0.470299
+                 Within R2: 0.035805

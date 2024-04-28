@@ -1,0 +1,14 @@
+OLS estimation, Dep. Var.: log_running_total_open_issues
+Observations: 1,054
+Fixed-effects: org_name: 19,  time_period: 64
+Standard-errors: Clustered (org_name) 
+                     Estimate Std. Error   t value Pr(>|t|) 
+treated             -0.301340   0.297224 -1.013847  0.32409 
+post                -0.320659   0.436362 -0.734845  0.47190 
+age                 -0.014493   0.021106 -0.686667  0.50104 
+active_repositories  0.000682   0.000553  1.233345  0.23331 
+treated:post         0.562472   0.453458  1.240406  0.23075 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.514058     Adj. R2: 0.928819
+                 Within R2: 0.010318

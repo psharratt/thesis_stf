@@ -21,7 +21,7 @@ output_directory = os.path.join(target_directory, "output/DiD_PanelOLS_summaries
 os.chdir(target_directory)
 
 # Load the data
-trimmed_did_data = pd.read_excel("data/DiD/trimmed_did_dataset.xlsx")
+trimmed_did_data = pd.read_excel("data/DiD/trimmed_did_data_v2.xlsx")
 
 # Set the MultiIndex for the panel data structure
 trimmed_did_data.set_index(['org_name', 'time_period'], inplace=True)
@@ -58,7 +58,7 @@ print(res)
 summary_str = str(res.summary)
 
 # Save to a text file
-with open('PanelOLS_Results_Summary.txt', 'w') as file:
+with open('PanelOLS_Results_Summary_v2.txt', 'w') as file:
     file.write(summary_str)
 
 # Assuming the treatment effect is directly estimated (coefficient of 'treated')
@@ -83,7 +83,7 @@ def run_and_save_panel_ols(dependent_var, data, exog_vars):
     summary_str = str(res.summary)
 
     # Define file path
-    summary_file_path = os.path.join(output_directory, f'PanelOLS_Results_Summary_{dependent_var}.txt')
+    summary_file_path = os.path.join(output_directory, f'PanelOLS_Results_Summary_V2{dependent_var}.txt')
 
     # Save to a text file
     with open(summary_file_path, 'w') as file:

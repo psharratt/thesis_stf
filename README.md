@@ -3,7 +3,7 @@
 
 ## Thesis for the Hertie School's Master of Data Science for Public Policy
 
-This repository contains the data and analysis scripts for my master's thesis conducted at the Hertie Schoo, Berlin, under the supervision of Prof. Simon Munzert and in partnership with the Sovereign Tech Fund. The study investigates the correlation between public investment and the health of open-source software projects hosted on GitHub.
+This repository contains the data and analysis scripts for my master's thesis conducted at the Hertie School, Berlin, under the supervision of Prof. Simon Munzert and in partnership with the Sovereign Tech Fund. The study investigates the correlation between public investment and the health of open-source software projects hosted on GitHub.
 
 ### Abstract
 

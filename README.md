@@ -7,7 +7,7 @@ This repository contains the data and analysis scripts for my master's thesis co
 
 ### Abstract
 
-Amidst the growing reliance on open-source software for digital infrastructure, understanding the dynamics of public investment and the communal well-being of such software is pivotal. This research examines the correlation between financial support from the Sovereign Tech Fund and measurements of OSS ecosystem health on GitHub, using Difference-in-Differences approach to scrutinize the impact of investment.
+Amidst the growing reliance on open-source software for digital infrastructure, understanding the dynamics of public investment and the communal well-being of such software is pivotal. This research examines the correlation between financial support from the Sovereign Tech Fund and measurements of OSS ecosystem health on GitHub, using a Difference-in-Differences method estimated with two way fixed effects to scrutinize the impact of investment.
 
 ### Repository Structure
 

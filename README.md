@@ -37,7 +37,7 @@ The data analyzed in this thesis is collected from the Augur software suite of t
 
 ### Output
 
-- `/metrics`: Summaries of the DiD analysis.
+- `/summaries`: Summaries of the DiD analysis.
 - `/tables`, `/plots`: Data representations and visual outputs for thesis.
 
 ### Archive

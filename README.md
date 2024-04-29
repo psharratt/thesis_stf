@@ -19,7 +19,7 @@ Amidst the growing reliance on open-source software for digital infrastructure, 
   - `/functions`: Python functions with nested SQL string queries for data collection
   - `/R`: R scripts for statistical analysis and generating figures.
 - `/output`: 
-  - `/metrics`: Summary files of the analyzed metrics.
+  - `/summaries`: Summary files of the analyzed metrics.
   - `/tables`: Generated tables used in the thesis.
   - `/final plots`: Plots and graphs used in the final document.
 - `/data`: 

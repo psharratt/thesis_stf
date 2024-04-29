@@ -113,6 +113,25 @@ for (i in seq_along(model_list)) {
 }
 
 
+# Create LaTeX or HTML formatted tables for each model and combine them into one table
+screenreg_list <- lapply(model_list, screenreg)
+htmlreg_list <- lapply(model_list, htmlreg)
+
+# Combine the tables into one
+combined_screenreg <- do.call("rbind", screenreg_list)
+combined_htmlreg <- do.call("rbind", htmlreg_list)
+
+# Display the combined table in the R console
+print(combined_screenreg)
+
+
+# Assuming your models are stored in a list called model_list
+
+# Create LaTeX formatted table for all models
+combined_texreg <- texreg(model_list, caption = "Combined Summary Statistics for All Models")
+
+# Save the LaTeX table to a file
+writeLines(as.character(combined_texreg), "output/DiD_main_summaries/Combined_Summary_Statistics.tex")
 
 
 
@@ -153,7 +172,7 @@ enhanced_table <- kable(tidy_results[[1]], format = "html") %>%
   kable_styling(bootstrap_options = c("striped", "hover"))
 
 # Create a LaTeX-formatted table
-enhanced_latex_table <- kable(tidy_results[[1]], format = "latex", booktabs = TRUE, caption = "Summary Statistics Log Cotributors") %>%
+enhanced_latex_table <- kable(tidy_results[[1]], format = "latex", booktabs = TRUE, caption = "Summary Statistics Outcome Variables") %>%
   kable_styling(latex_options = c("striped", "scale_down"))
 
 # View the LaTeX code (useful for copying into a LaTeX document)
@@ -190,8 +209,6 @@ enhanced_latex_table <- kable(combined_results, "latex", booktabs = TRUE,
 kableExtra::save_kable(enhanced_latex_table, file = "output/DiD_main_summaries/Summary_Model_Statistics.pdf")
 
 
-
-#### CHECK THIS CODE:
 
 
 

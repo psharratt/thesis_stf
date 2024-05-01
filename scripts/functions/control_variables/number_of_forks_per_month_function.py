@@ -68,7 +68,7 @@ def number_of_forks_per_month(org_name, start_date, end_date, engine):
         # Execute the query and return results
         forks_df = pd.read_sql_query(query, con=engine)
         
-        # Convert 'month' to period (M) for consistent time series analysis
+        # Convert 'month' to period (M) for consistent time series
         forks_df['month'] = pd.to_datetime(forks_df['month']).dt.to_period('M')
         
         return forks_df

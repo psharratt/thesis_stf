@@ -12,10 +12,10 @@ import pandas as pd
 # Define the target directory
 target_directory = "/Users/paulsharratt/Documents/Hertie/Semester 4/03 - Master's Thesis/thesis_stf/"
 
-# Change the current working directory
+# Setting working directory
 os.chdir(target_directory)
 
-# Load your datasets:
+# Loading datasets:
     
 # Treatment variables
 df_open_issues = pd.read_csv('data/DiD/combined_open_issues_data_all.csv')
@@ -120,7 +120,7 @@ column_order = ['time_period',
 
 df_final = df_final[column_order]
 
-# Save the final DataFrame in both CSV and Excel formats
+# Saving the final DF in both CSV and Excel formats
 output_file_path_csv = os.path.join(target_directory, 'data', 'DiD', 'final_did_dataset_v2.csv')
 output_file_path_excel = os.path.join(target_directory, 'data', 'DiD', 'final_did_dataset_v2.xlsx')
 

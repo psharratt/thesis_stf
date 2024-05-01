@@ -30,7 +30,7 @@ from scripts.functions.control_variables.calculate_org_age_function import calcu
 
 from scripts.functions.core_contributor_count_function import fetch_monthly_unique_contributors
 
-engine = augur_db_connect("scripts/config.json")  # Ensure you have a function to connect to your database
+engine = augur_db_connect("scripts/config.json")
 
 repo_id = 193661
 org_name = 'curl'

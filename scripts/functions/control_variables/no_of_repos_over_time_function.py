@@ -75,7 +75,7 @@ def number_of_repos_per_month(org_name, start_date, end_date, engine):
         # Execute SQL query
         repo_count_df = pd.read_sql_query(query, con=engine)
         
-        # Convert 'month' to period (M) to ensure consistency for time series analysis
+        # Convert 'month' to period (M) to ensure consistency for time series 
         repo_count_df['month'] = pd.to_datetime(repo_count_df['month']).dt.to_period('M')
         
         return repo_count_df

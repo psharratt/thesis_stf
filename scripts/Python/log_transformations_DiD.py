@@ -12,13 +12,13 @@ import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-# Define the target directory
+# Setting TD
 target_directory = "/Users/paulsharratt/Documents/Hertie/Semester 4/03 - Master's Thesis/thesis_stf/"
 
-# Change the current working directory
+# Setting WD
 os.chdir(target_directory)
 
-# Load the data
+# Loading data
 trimmed_did_data = pd.read_excel("data/DiD/trimmed_did_data_v2.xlsx")
 
 metrics = [
@@ -50,15 +50,15 @@ metric_names = {
 }
 
 
-# Apply log transformation to each metric and create a new column for each
+# Applying log transformation
 for metric in metrics:
     trimmed_did_data[f'log_{metric}'] = np.log1p(trimmed_did_data[metric])
     
-# Check the first few rows to confirm the transformations
+# Checking the head to confirm the transformations
 print(trimmed_did_data[['log_' + metric for metric in metrics]].head())
 
 
-# Visualize the transformed distributions
+# Visualizing the transformed distributions
 plt.figure(figsize=(20, 15))
 plt.suptitle('Log Transformed Distributions', fontsize=16, y=0.98)  # Adjust 'y' for vertical position
 
@@ -74,6 +74,6 @@ plt.tight_layout(pad=3.0)
 plt.subplots_adjust(top=0.92)  # Adjust the top margin to give space for the suptitle
 plt.show()
 
-# Save the final DataFrame 
+# Saving the final DF
 output_file_path_excel = os.path.join(target_directory, 'data', 'DiD', 'final_did_dataset_log_transformed_v2.xlsx')
 trimmed_did_data.to_excel(output_file_path_excel, index=False)

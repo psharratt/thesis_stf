@@ -21,7 +21,7 @@ from scripts.functions.control_variables.number_of_PRs_per_month_function import
 def collect_pull_request_data(org_data, start_date, end_date, engine):
     all_org_pull_requests = pd.DataFrame()
     for idx, row in org_data.iterrows():
-        org_name = row['org_name']  # Ensure the column name 'org_name' matches your DataFrame
+        org_name = row['org_name']  
         print(f"Processing pull request data for organization: {org_name}")
 
         # Fetch data

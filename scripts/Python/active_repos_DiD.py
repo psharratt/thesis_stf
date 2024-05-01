@@ -21,7 +21,7 @@ from scripts.functions.control_variables.fetch_active_repo_count_function import
 def collect_active_repo_data(org_data, start_date, end_date, engine):
     all_org_active_repos = pd.DataFrame()
     for idx, row in org_data.iterrows():
-        org_name = row['org_name']  # Confirm the column name 'org_name' matches your DataFrame
+        org_name = row['org_name']  
         print(f"Processing active repository data for organization: {org_name}")
         
         # Fetch data

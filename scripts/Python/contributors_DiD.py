@@ -22,7 +22,7 @@ from scripts.functions.contributors_functions import number_of_contributors_per_
 def collect_contributor_data(org_data, start_date, end_date, engine):
     all_org_contributors = pd.DataFrame()
     for idx, row in org_data.iterrows():
-        org_name = row['org_name']  # Confirm the column name 'org' matches your DataFrame
+        org_name = row['org_name']  
         print(f"Processing contributor data for organization: {org_name}")
         
         # Fetch data

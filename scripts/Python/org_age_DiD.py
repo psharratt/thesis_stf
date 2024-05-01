@@ -21,7 +21,7 @@ from scripts.functions.control_variables.calculate_org_age_function import calcu
 def collect_org_age_data(org_data, start_date, end_date, engine):
     all_org_ages = pd.DataFrame()
     for idx, row in org_data.iterrows():
-        org_name = row['org_name']  # Confirm the column name 'org_name' matches your DataFrame
+        org_name = row['org_name']  
         print(f"Processing age data for organization: {org_name}")
 
         # Fetch data

@@ -177,7 +177,7 @@ def plot_issue_closure_investment(row, start_date, end_date, engine, save_direct
     
     import os
     
-    # Ensure the directory exists
+    # Ensure directory exists
     os.makedirs(save_directory, exist_ok=True)
     plot_filename = f"{save_directory}/{org_name.replace('/', '_').replace(' ', '_').replace(':', '_')}_issue_closure_time.png"
     plt.savefig(plot_filename)

@@ -16,7 +16,7 @@ os.chdir(target_directory)
 from scripts.Python.augur_connect import augur_db_connect
 from scripts.functions.release_frequency_functions import get_release_data, activity_release_data, get_aggregated_release_data, get_org_release_data, get_org_release_frequency,  get_org_release_frequency_over_time
 
-# If your script is in thesis_stf and you run it from there:
+# Loading Augur connect
 engine = augur_db_connect("scripts/config.json")
 
 org_name  = 'curl'

@@ -10,11 +10,11 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import os
 
-# Load the Excel file into a pandas DataFrame
+# Load the Excel file 
 file_path = "/Users/paulsharratt/Documents/Hertie/Semester 4/03 - Master's Thesis/thesis_stf/data/processed/commits_data_2.xlsx"
 commits_data_2_df = pd.read_excel(file_path)
 
-# Create a directory for the plots if it doesn't already exist
+# Create a directory for the plots
 plots_dir = "/Users/paulsharratt/Documents/Hertie/Semester 4/03 - Master's Thesis/thesis_stf/output/plots/repo commits over time/"
 os.makedirs(plots_dir, exist_ok=True)
 

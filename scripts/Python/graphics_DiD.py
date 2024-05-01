@@ -21,7 +21,6 @@ os.chdir(target_directory)
 # Load the data
 trimmed_did_data = pd.read_excel("data/DiD/trimmed_did_dataset.xlsx")
 
-# Assuming 'time_period' and 'group' are correctly set, and data is loaded as 'trimmed_did_data'
 trimmed_did_data['time_period'] = pd.to_datetime(trimmed_did_data['time_period'])
 
 # Setting the figure size and layout

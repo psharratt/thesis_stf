@@ -71,7 +71,7 @@ for i, metric in enumerate(metrics, 1):
     plt.ylabel('Frequency')  # Optional: set y-axis label
 
 plt.tight_layout(pad=3.0)
-plt.subplots_adjust(top=0.92)  # Adjust the top margin to give space for the suptitle
+plt.subplots_adjust(top=0.92)  
 plt.show()
 
 # Saving the final DF

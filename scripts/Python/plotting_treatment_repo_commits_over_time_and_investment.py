@@ -73,7 +73,7 @@ for repo_id in commits_data_2_df['repo_id'].unique():
     plt.legend()
     plt.tight_layout()
     
-    # Save the plot with repo name in the filename
+    # Saving the plot with repo name 
     plot_filename = f"{plots_dir}commits_investment_{sanitized_repo_name}_{repo_id}.png"
     plt.savefig(plot_filename)
     plt.close()

@@ -12,29 +12,29 @@ import seaborn as sns
 import os
 
 
-# Define the target directory
+# Setting the target directory
 target_directory = "/Users/paulsharratt/Documents/Hertie/Semester 4/03 - Master's Thesis/thesis_stf/"
 
-# Change the current working directory
+# Changing the current working directory
 os.chdir(target_directory)
 
 from scripts.Python.augur_connect import augur_db_connect
 from scripts.functions.release_frequency_functions import plot_org_release_frequency, get_org_release_frequency_over_time, calculate_release_frequencies
 
-
+# Output directory
 save_directory = 'output/plots/org release frequency over time'
 
-# If your script is in thesis_stf and you run it from there:
+# Importing Augur connect function
 engine = augur_db_connect("scripts/config.json")
 
-# Load the Excel file containing the organization names
+# Loading xlsx file containing the organization names
 file_path = 'data/processed/treatment_group_final.xlsx'
 treatment_df = pd.read_excel(file_path)
 treatment_df['start_date'] = pd.to_datetime(treatment_df['start_date'])
 treatment_df['end_date'] = pd.to_datetime(treatment_df['end_date'])
 
 # Assuming the relevant column is named 'org_name' or similar
-org_names = treatment_df['org'].unique()  # Adjust the column name as necessary
+org_names = treatment_df['org'].unique()  
 
 # Define the date range
 start_date = '2019-01-01'

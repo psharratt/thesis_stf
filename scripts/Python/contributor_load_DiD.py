@@ -23,7 +23,7 @@ engine = augur_db_connect("scripts/config.json")
 def collect_contributor_load_data(org_data, start_date, end_date, engine):
     all_org_contributor_load = pd.DataFrame()
     for idx, row in org_data.iterrows():
-        org_name = row['org_name']  # Confirm the column name 'org' matches your DataFrame
+        org_name = row['org_name']
         print(f"Processing contributor load data for organization: {org_name}")
         
         # Fetch data
